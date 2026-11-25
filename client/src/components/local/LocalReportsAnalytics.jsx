@@ -1,24 +1,24 @@
 import React, { useState, useMemo } from 'react';
-import { 
-  BarChart3, 
-  TrendingUp, 
-  Calendar, 
-  Download, 
-  Printer, 
-  Search, 
-  Filter, 
-  DollarSign, 
-  CreditCard, 
-  AlertTriangle, 
-  Clock, 
-  Warehouse, 
-  Layers, 
-  CheckCircle2, 
-  Users, 
-  FileSpreadsheet, 
-  FileText, 
-  ArrowUpRight, 
-  ArrowDownRight, 
+import {
+  BarChart3,
+  TrendingUp,
+  Calendar,
+  Download,
+  Printer,
+  Search,
+  Filter,
+  DollarSign,
+  CreditCard,
+  AlertTriangle,
+  Clock,
+  Warehouse,
+  Layers,
+  CheckCircle2,
+  Users,
+  FileSpreadsheet,
+  FileText,
+  ArrowUpRight,
+  ArrowDownRight,
   X,
   PieChart,
   Activity,
@@ -27,13 +27,13 @@ import {
 } from 'lucide-react';
 import { formatLKR } from '../../utils/formatters';
 import { CompanyLogo } from '../common/BrandAssets';
-import { 
-  MONTH_NAMES, 
-  parseMonthYear, 
-  getYearMonth, 
-  getDateYearMonth, 
-  compareYM, 
-  isMachineRentedInMonth, 
+import {
+  MONTH_NAMES,
+  parseMonthYear,
+  getYearMonth,
+  getDateYearMonth,
+  compareYM,
+  isMachineRentedInMonth,
   paymentBelongsToYM,
   calculateCustomerArrearsBreakdown
 } from './LocalCustomerDirectory';
@@ -107,7 +107,7 @@ export function LocalReportsAnalytics({
     taglineSi: "කාර්මික මහන මැෂින් කුලියට දීම, නඩත්තුව සහ අලෙවිය",
     addressEn: "200/2B/1, Pahala Kosgama, Kosgama, Sri Lanka",
     hotline: "077 412 7702",
-    email: "anujayaenterprises.info@gmail.com"
+    email: "info@enterprises-erp.com"
   };
 
   // ================= 1. DAILY INCOME CALCULATION =================
@@ -467,7 +467,7 @@ export function LocalReportsAnalytics({
   // ================= EXCEL EXPORT FUNCTION =================
   const handleExportExcel = () => {
     let csvContent = '\uFEFF'; // UTF-8 BOM so Excel opens with proper encoding
-    let fileName = `ANUJAYA_REPORT_${activeReportTab.toUpperCase()}_${startDate}_to_${endDate}.csv`;
+    let fileName = `ERP_REPORT_${activeReportTab.toUpperCase()}_${startDate}_to_${endDate}.csv`;
 
     csvContent += `ENTERPRISES ERP SOLUTIONS - OFFICIAL BUSINESS REPORT\r\n`;
     csvContent += `Report Title: ${activeReportTab.replace(/_/g, ' ').toUpperCase()}\r\n`;
@@ -578,7 +578,7 @@ export function LocalReportsAnalytics({
 
   return (
     <div className="space-y-6 animate-fadeIn pb-12">
-      
+
       {/* ================= PAGE HEADER & METRICS RIBBON ================= */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-carbon-900/90 p-5 rounded-3xl border border-carbon-700/80 shadow-2xl backdrop-blur-md">
         <div>
@@ -614,7 +614,7 @@ export function LocalReportsAnalytics({
           <button
             onClick={() => setIsPrintModalOpen(true)}
             className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold transition flex items-center gap-2 shadow-lg"
-            title="Generate official executive printable report with Anujaya corporate header and signature block"
+            title="Generate official executive printable report with corporate header and signature block"
           >
             <Printer className="w-4 h-4" />
             <span>Generate PDF / Print</span>
@@ -625,7 +625,7 @@ export function LocalReportsAnalytics({
       {/* ================= FILTER TOOLBAR ================= */}
       <div className="p-4 bg-carbon-900/80 border border-carbon-700/80 rounded-2xl space-y-3 font-mono text-xs shadow-md">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          
+
           {/* Presets */}
           <div className="flex flex-wrap items-center gap-1.5">
             <span className="text-[10px] uppercase font-bold text-slate-500 mr-1 flex items-center gap-1">
@@ -643,11 +643,10 @@ export function LocalReportsAnalytics({
               <button
                 key={p.id}
                 onClick={() => handlePresetChange(p.id)}
-                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition ${
-                  datePreset === p.id 
-                    ? 'bg-emerald-600 text-white shadow' 
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition ${datePreset === p.id
+                    ? 'bg-emerald-600 text-white shadow'
                     : 'bg-carbon-800 hover:bg-carbon-750 text-slate-400 hover:text-white border border-carbon-700'
-                }`}
+                  }`}
               >
                 {p.label}
               </button>
@@ -744,17 +743,15 @@ export function LocalReportsAnalytics({
             <button
               key={tab.id}
               onClick={() => setActiveReportTab(tab.id)}
-              className={`p-3 rounded-2xl font-mono text-left transition flex flex-col justify-between border ${
-                isActive
+              className={`p-3 rounded-2xl font-mono text-left transition flex flex-col justify-between border ${isActive
                   ? 'bg-carbon-800/90 border-emerald-500/80 shadow-lg shadow-emerald-950/40 text-white'
                   : 'bg-carbon-900/60 border-carbon-700/60 text-slate-400 hover:text-white hover:bg-carbon-850'
-              }`}
+                }`}
             >
               <div className="flex items-center justify-between w-full mb-1">
                 <Icon className={`w-4 h-4 ${isActive ? 'text-emerald-400' : 'text-slate-400'}`} />
-                <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold ${
-                  isActive ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-carbon-800 text-slate-400'
-                }`}>
+                <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold ${isActive ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' : 'bg-carbon-800 text-slate-400'
+                  }`}>
                   {tab.badge}
                 </span>
               </div>
@@ -895,11 +892,10 @@ export function LocalReportsAnalytics({
                       <td className="px-4 py-3 text-right text-sky-300 font-bold">{formatLKR(row.expectedBilling)}</td>
                       <td className="px-4 py-3 text-right text-emerald-400 font-bold">{formatLKR(row.collectedAmount)}</td>
                       <td className="px-4 py-3 text-center">
-                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                          row.collectionRate >= 90 ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' :
-                          row.collectionRate >= 60 ? 'bg-amber-950 text-amber-300 border border-amber-800' :
-                          'bg-rose-950 text-rose-300 border border-rose-800'
-                        }`}>
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${row.collectionRate >= 90 ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' :
+                            row.collectionRate >= 60 ? 'bg-amber-950 text-amber-300 border border-amber-800' :
+                              'bg-rose-950 text-rose-300 border border-rose-800'
+                          }`}>
                           {row.collectionRate}%
                         </span>
                       </td>
@@ -991,12 +987,11 @@ export function LocalReportsAnalytics({
                         {formatLKR(c.totalBalanceDue)}
                       </td>
                       <td className="px-4 py-3 text-center">
-                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
-                          c.agingBucket === '90+ Days' ? 'bg-rose-950 text-rose-300 border border-rose-800' :
-                          c.agingBucket === '60+ Days' ? 'bg-orange-950 text-orange-300 border border-orange-800' :
-                          c.agingBucket === '30+ Days' ? 'bg-amber-950 text-amber-300 border border-amber-800' :
-                          'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                        }`}>
+                        <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${c.agingBucket === '90+ Days' ? 'bg-rose-950 text-rose-300 border border-rose-800' :
+                            c.agingBucket === '60+ Days' ? 'bg-orange-950 text-orange-300 border border-orange-800' :
+                              c.agingBucket === '30+ Days' ? 'bg-amber-950 text-amber-300 border border-amber-800' :
+                                'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                          }`}>
                           {c.agingBucket}
                         </span>
                       </td>
@@ -1068,11 +1063,10 @@ export function LocalReportsAnalytics({
                   overdueCustomersData.list.map(c => (
                     <tr key={c.customerId} className="hover:bg-carbon-800/40 transition">
                       <td className="px-4 py-3">
-                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold inline-flex items-center gap-1 ${
-                          c.severity === 'Critical' ? 'bg-rose-950 text-rose-300 border border-rose-800' :
-                          c.severity === 'High' ? 'bg-orange-950 text-orange-300 border border-orange-800' :
-                          'bg-amber-950 text-amber-300 border border-amber-800'
-                        }`}>
+                        <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold inline-flex items-center gap-1 ${c.severity === 'Critical' ? 'bg-rose-950 text-rose-300 border border-rose-800' :
+                            c.severity === 'High' ? 'bg-orange-950 text-orange-300 border border-orange-800' :
+                              'bg-amber-950 text-amber-300 border border-amber-800'
+                          }`}>
                           <ShieldAlert className="w-3 h-3" />
                           <span>{c.severity}</span>
                         </span>
@@ -1162,18 +1156,17 @@ export function LocalReportsAnalytics({
                     <span className="font-bold text-white font-sans">{cat.category}</span>
                     <div className="flex items-center gap-3">
                       <span className="text-slate-400">{cat.deployed} / {cat.total} Units Deployed</span>
-                      <span className={`px-2 py-0.5 rounded font-bold text-[10px] ${
-                        cat.rate >= 80 ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' :
-                        cat.rate >= 50 ? 'bg-sky-950 text-sky-300 border border-sky-800' :
-                        'bg-amber-950 text-amber-300 border border-amber-800'
-                      }`}>
+                      <span className={`px-2 py-0.5 rounded font-bold text-[10px] ${cat.rate >= 80 ? 'bg-emerald-950 text-emerald-300 border border-emerald-800' :
+                          cat.rate >= 50 ? 'bg-sky-950 text-sky-300 border border-sky-800' :
+                            'bg-amber-950 text-amber-300 border border-amber-800'
+                        }`}>
                         {cat.rate}% Utilization
                       </span>
                     </div>
                   </div>
                   {/* Visual Progress Bar */}
                   <div className="w-full h-2 bg-carbon-800 rounded-full overflow-hidden">
-                    <div 
+                    <div
                       className="h-full bg-gradient-to-r from-purple-500 to-emerald-500 transition-all duration-500 rounded-full"
                       style={{ width: `${cat.rate}%` }}
                     />
@@ -1216,7 +1209,7 @@ export function LocalReportsAnalytics({
 
           {/* Expense Category Breakdown & Cashflow Statement */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            
+
             {/* P&L Statement breakdown */}
             <div className="p-5 bg-carbon-900/80 border border-carbon-700/80 rounded-2xl space-y-4">
               <h3 className="font-display font-bold text-sm text-white uppercase tracking-wider flex items-center gap-2 border-b border-carbon-800 pb-2">
@@ -1273,7 +1266,7 @@ export function LocalReportsAnalytics({
                         </div>
                       </div>
                       <div className="w-full h-1.5 bg-carbon-800 rounded-full overflow-hidden">
-                        <div 
+                        <div
                           className="h-full bg-gradient-to-r from-purple-500 to-rose-500 rounded-full"
                           style={{ width: `${exp.pct}%` }}
                         />
@@ -1292,7 +1285,7 @@ export function LocalReportsAnalytics({
       {isPrintModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-start justify-center p-2 sm:p-4 overflow-y-auto">
           <div className="bg-white text-slate-900 rounded-2xl sm:rounded-3xl w-full max-w-4xl shadow-2xl overflow-hidden my-4 sm:my-8">
-            
+
             {/* Top Toolbar (No-Print) */}
             <div className="no-print p-4 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
               <div className="flex items-center gap-2 font-mono text-xs">
@@ -1320,7 +1313,7 @@ export function LocalReportsAnalytics({
 
             {/* Printable Document Body */}
             <div id="printable-document" className="p-6 sm:p-10 space-y-6 text-slate-900 bg-white">
-              
+
               {/* Header */}
               <div className="flex justify-between items-start border-b-2 border-slate-900 pb-5">
                 <div className="flex items-center gap-3">

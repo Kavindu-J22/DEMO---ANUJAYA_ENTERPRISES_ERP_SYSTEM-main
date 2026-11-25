@@ -8,7 +8,7 @@ export function LocalAlertLogsModal({ isOpen, logs, onClose }) {
   return (
     <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
       <div className="bg-carbon-900 border border-carbon-700/80 rounded-3xl w-full max-w-3xl shadow-2xl overflow-hidden my-8">
-        
+
         {/* Header */}
         <div className="p-6 bg-carbon-850 border-b border-carbon-700/60 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -20,7 +20,7 @@ export function LocalAlertLogsModal({ isOpen, logs, onClose }) {
                 Automated Due Date Email Logs
               </h3>
               <p className="text-xs text-slate-400 font-mono">
-                Nodemailer SMTP Dispatch Audit Trail (anujayaenterprises.info@gmail.com)
+                Nodemailer SMTP Dispatch Audit Trail (notifications@enterprises-erp.com)
               </p>
             </div>
           </div>
@@ -66,15 +66,14 @@ export function LocalAlertLogsModal({ isOpen, logs, onClose }) {
                           {log.customerName}
                         </td>
                         <td className="px-3 py-2.5">
-                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                            log.alertType === 'OVERDUE'
+                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${log.alertType === 'OVERDUE'
                               ? 'bg-rose-950 text-rose-300 border border-rose-800'
                               : log.alertType === 'DUE_TODAY'
-                              ? 'bg-red-950 text-red-300 border border-red-800'
-                              : log.alertType === '3_DAYS'
-                              ? 'bg-orange-950 text-orange-300 border border-orange-800'
-                              : 'bg-amber-950 text-amber-300 border border-amber-800'
-                          }`}>
+                                ? 'bg-red-950 text-red-300 border border-red-800'
+                                : log.alertType === '3_DAYS'
+                                  ? 'bg-orange-950 text-orange-300 border border-orange-800'
+                                  : 'bg-amber-950 text-amber-300 border border-amber-800'
+                            }`}>
                             {log.alertType?.replace('_', ' ')}
                           </span>
                         </td>

@@ -316,7 +316,7 @@ export function ChinaPrintableReportModal({ isOpen, shipment, onClose }) {
             <div className="pt-8 border-t border-slate-300 mt-6 grid grid-cols-3 gap-6 text-center text-xs">
               <div>
                 <div className="h-14 border-b border-dashed border-slate-400 flex items-end justify-center pb-1">
-                  <span className="font-script text-base text-slate-700">H.M.K. Anujaya</span>
+                  <span className="font-script text-base text-slate-700">Operations Manager</span>
                 </div>
                 <span className="font-bold text-slate-900 block mt-1">Prepared By</span>
                 <span className="text-[10px] text-slate-500 font-mono">Senior Accountant / Finance Lead</span>
@@ -332,7 +332,7 @@ export function ChinaPrintableReportModal({ isOpen, shipment, onClose }) {
 
               <div>
                 <div className="h-14 border-b border-dashed border-slate-400 flex items-end justify-center pb-1">
-                  <span className="font-script text-base text-slate-700">K.A. Anujaya</span>
+                  <span className="font-script text-base text-slate-700">Managing Director</span>
                 </div>
                 <span className="font-bold text-slate-900 block mt-1">Authorized Director</span>
                 <span className="text-[10px] text-slate-500 font-mono">Managing Director, ENTERPRISES ERP SOLUTIONS</span>
@@ -341,8 +341,8 @@ export function ChinaPrintableReportModal({ isOpen, shipment, onClose }) {
 
             {/* Print Footer Notice */}
             <div className="mt-6 pt-3 border-t border-slate-200 text-[9px] text-slate-400 font-mono flex items-center justify-between">
-              <span>System Verification Hash: SHA256-ANUJAYA-CHINA-{shipment.shipmentNo}</span>
-              <span>Generated via Anujaya ERP v3.8 • Confidential Financial Document</span>
+              <span>System Verification Hash: SHA256-ENTERPRISE-CHINA-{shipment.shipmentNo}</span>
+              <span>Generated via Enterprise ERP Solutions v3.8 • Confidential Financial Document</span>
             </div>
           </div>
         </div>

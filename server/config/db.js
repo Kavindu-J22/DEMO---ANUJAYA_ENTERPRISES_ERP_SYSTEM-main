@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const fs = require('fs');
 
-const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://anujayaenterprisesinfo_db_user:V3JXIWDlcso4XSaj@cluster0.fyk3t9l.mongodb.net/anujaya_consortium_erp?retryWrites=true&w=majority";
+const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/demo_consortium_erp";
 
 let isMongoConnected = false;
 let mongoConnectionError = null;
@@ -13,11 +13,12 @@ async function connectDB() {
     // Attempt Mongoose connection with 8 second timeout
     await mongoose.connect(MONGO_URI, {
       serverSelectionTimeoutMS: 8000,
-      tls: true
+      tls: MONGO_URI.startsWith('mongodb+srv')
     });
     isMongoConnected = true;
     mongoConnectionError = null;
-    console.log(">>> MongoDB Atlas Connected Successfully! [Cluster0 - anujaya_consortium_erp]");
+    const dbName = mongoose.connection.db ? mongoose.connection.db.databaseName : 'Connected';
+    console.log(`>>> MongoDB Atlas Connected Successfully! [Database: ${dbName}]`);
   } catch (err) {
     isMongoConnected = false;
     mongoConnectionError = err.message;

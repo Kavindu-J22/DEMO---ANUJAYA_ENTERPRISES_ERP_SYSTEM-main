@@ -11,15 +11,15 @@ export function GlobalTaxInvoiceModal({ sale, machine, onClose }) {
   const unitPrice = parseFloat(sale.unitPrice) || 0;
   const totalRevenue = qty * unitPrice;
 
-  const rawPaid = sale.paidAmount !== undefined && sale.paidAmount !== null 
-    ? sale.paidAmount 
+  const rawPaid = sale.paidAmount !== undefined && sale.paidAmount !== null
+    ? sale.paidAmount
     : sale.amountPaid;
 
   const paidAmount = sale.paymentStatus === 'PAID'
     ? totalRevenue
     : sale.paymentStatus === 'PARTIAL'
-    ? (rawPaid !== undefined && rawPaid !== null ? parseFloat(rawPaid) : (totalRevenue * 0.5))
-    : (parseFloat(rawPaid) || 0);
+      ? (rawPaid !== undefined && rawPaid !== null ? parseFloat(rawPaid) : (totalRevenue * 0.5))
+      : (parseFloat(rawPaid) || 0);
 
   const dueAmount = sale.dueAmount !== undefined && sale.dueAmount !== null
     ? parseFloat(sale.dueAmount)
@@ -32,7 +32,7 @@ export function GlobalTaxInvoiceModal({ sale, machine, onClose }) {
   return (
     <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
       <div className="bg-white text-slate-900 rounded-3xl w-full max-w-4xl shadow-2xl overflow-hidden my-8">
-        
+
         {/* Modal Controls (No print) */}
         <div className="no-print bg-slate-900 text-white p-4 flex items-center justify-between border-b border-slate-800">
           <div className="flex items-center gap-2 text-xs font-mono">
@@ -58,7 +58,7 @@ export function GlobalTaxInvoiceModal({ sale, machine, onClose }) {
 
         {/* Printable Document Body */}
         <div id="printable-document" className="p-8 sm:p-12 space-y-6 text-slate-900 bg-white">
-          
+
           {/* Header */}
           <div className="flex justify-between items-start border-b-2 border-slate-900 pb-6">
             <div className="flex items-center gap-4">
@@ -74,7 +74,7 @@ export function GlobalTaxInvoiceModal({ sale, machine, onClose }) {
                   Apparel Machinery Logistics, High-Speed Sewing Systems & Automated Equipment
                 </div>
                 <div className="text-[10px] text-slate-500 font-mono">
-                  Kosgama Central Yard • Hotline: 077 412 7702 • Email: anujayaenterprises.info@gmail.com
+                  Kosgama Central Yard • Hotline: 077 412 7702 • Email: info@enterprises-erp.com
                 </div>
               </div>
             </div>
@@ -165,18 +165,17 @@ export function GlobalTaxInvoiceModal({ sale, machine, onClose }) {
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-mono space-y-1">
                 <div className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Settlement Terms & Status</div>
                 <div className="flex items-center gap-2 pt-0.5">
-                  <span className={`px-2 py-0.5 rounded text-[11px] font-bold uppercase ${
-                    sale.paymentStatus === 'PAID' || dueAmount === 0
+                  <span className={`px-2 py-0.5 rounded text-[11px] font-bold uppercase ${sale.paymentStatus === 'PAID' || dueAmount === 0
                       ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
                       : sale.paymentStatus === 'PARTIAL'
-                      ? 'bg-amber-100 text-amber-900 border border-amber-300'
-                      : 'bg-rose-100 text-rose-800 border border-rose-300'
-                  }`}>
-                    {sale.paymentStatus === 'PAID' || dueAmount === 0 
-                      ? 'PAID IN FULL - SETTLED' 
-                      : sale.paymentStatus === 'PARTIAL' 
-                      ? 'ADVANCE / PARTIAL PAYMENT' 
-                      : 'COMMERCIAL CREDIT'}
+                        ? 'bg-amber-100 text-amber-900 border border-amber-300'
+                        : 'bg-rose-100 text-rose-800 border border-rose-300'
+                    }`}>
+                    {sale.paymentStatus === 'PAID' || dueAmount === 0
+                      ? 'PAID IN FULL - SETTLED'
+                      : sale.paymentStatus === 'PARTIAL'
+                        ? 'ADVANCE / PARTIAL PAYMENT'
+                        : 'COMMERCIAL CREDIT'}
                   </span>
                   <span className="text-slate-600 text-[11px]">Via {sale.payment || 'Bank Wire / SLIPS'}</span>
                 </div>

@@ -77,7 +77,7 @@ function getEmptyFallbackStore() {
         addressEn: "200/2B/1, Pahala Kosgama, Kosgama, Sri Lanka",
         addressSi: "200/2බී/1, පහළ කොස්ගම, කොස්ගම, ශ්‍රී ලංකාව",
         hotline: "077 412 7702",
-        email: "anujayaenterprises.info@gmail.com"
+        email: "info@enterprises-erp.com"
       },
       bank: {
         bankNameEn: "Bank Of Ceylon",
@@ -156,8 +156,18 @@ async function seedMongoIfEmpty() {
       await LocalConfig.create(getEmptyFallbackStore().localConfig);
     }
 
-    // DO NOT seed LocalMachines, LocalCustomers, LocalPayments, LocalPartners,
-    // LocalExpenses, or ChinaShipments — these must be entered by the user.
+    const lmCount = await LocalMachine.countDocuments();
+    if (lmCount === 0) {
+      const { LOCAL_MACHINES_BASELINE } = require('./seeds');
+      await LocalMachine.insertMany(LOCAL_MACHINES_BASELINE);
+    }
+
+    const lcCount = await LocalCustomer.countDocuments();
+    if (lcCount === 0) {
+      const { LOCAL_CUSTOMERS_BASELINE } = require('./seeds');
+      await LocalCustomer.insertMany(LOCAL_CUSTOMERS_BASELINE);
+    }
+
     console.log('[Seed] MongoDB verification completed. Fresh system ready.');
   } catch (err) {
     console.warn('[Seed] Warning:', err.message);

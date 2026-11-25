@@ -75,7 +75,7 @@ app.use((req, res, next) => {
     if (err) {
       // If client not yet built, serve helpful API landing
       res.json({
-        message: "Anujaya & Global Enterprises ERP Backend API Active",
+        message: "Enterprise Consortium ERP Backend API Active",
         endpoints: "/api/system/status, /api/global/*, /api/local/*, /api/alerts/*",
         port: PORT
       });

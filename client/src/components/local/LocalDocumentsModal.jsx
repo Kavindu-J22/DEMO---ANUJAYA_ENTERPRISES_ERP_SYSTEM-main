@@ -2,11 +2,11 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Printer, X, Languages, Edit3, CheckCircle2, Truck, FileText, Clock, AlertCircle } from 'lucide-react';
 import { formatLKR, numberToWordsLKR } from '../../utils/formatters';
 import { CompanyLogo, OfficialSealStamp, MockBarcode } from '../common/BrandAssets';
-import { 
-  MONTH_NAMES, 
-  getYearMonth, 
-  getDateYearMonth, 
-  compareYM, 
+import {
+  MONTH_NAMES,
+  getYearMonth,
+  getDateYearMonth,
+  compareYM,
   paymentBelongsToYM,
   calculateCustomerArrearsBreakdown,
   isMachineRentedInMonth
@@ -23,22 +23,22 @@ export function LocalDocumentsModal({
   const [docLang, setDocLang] = useState('en'); // 'en' or 'si'
   const [isEditingAgreement, setIsEditingAgreement] = useState(false);
 
-  const { 
-    type: rawType, 
-    customer: passedCustomer, 
-    payment: passedPayment, 
-    returnedMachines, 
-    meta, 
-    quotation, 
-    partner, 
-    purchase, 
-    returnItem, 
-    balanceDue, 
-    month, 
-    payments = [], 
-    arrearsData: passedArrearsData, 
-    singleRental, 
-    handoveredOnly 
+  const {
+    type: rawType,
+    customer: passedCustomer,
+    payment: passedPayment,
+    returnedMachines,
+    meta,
+    quotation,
+    partner,
+    purchase,
+    returnItem,
+    balanceDue,
+    month,
+    payments = [],
+    arrearsData: passedArrearsData,
+    singleRental,
+    handoveredOnly
   } = docData;
 
   // Resilient resolution: handles wrapped { type: 'RECEIPT', payment, customer } or raw payment object
@@ -59,7 +59,7 @@ export function LocalDocumentsModal({
     addressEn: "200/2B/1, Pahala Kosgama, Kosgama, Sri Lanka",
     addressSi: "200/2බී/1, පහළ කොස්ගම, කොස්ගම, ශ්‍රී ලංකාව",
     hotline: "077 412 7702",
-    email: "anujayaenterprises.info@gmail.com"
+    email: "info@enterprises-erp.com"
   };
 
   const bInfo = bankInfo || {
@@ -156,7 +156,7 @@ export function LocalDocumentsModal({
   return (
     <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-start justify-center p-2 sm:p-4 overflow-y-auto">
       <div className="bg-white text-slate-900 rounded-2xl sm:rounded-3xl w-full max-w-4xl shadow-2xl overflow-hidden my-4 sm:my-8">
-        
+
         {/* Controls Bar (No-Print) */}
         <div className="no-print bg-slate-900 text-white p-3 sm:p-4 flex flex-wrap items-center justify-between gap-2 sm:gap-3 border-b border-slate-800">
           <div className="flex items-center gap-3 text-xs font-mono">
@@ -176,11 +176,10 @@ export function LocalDocumentsModal({
               <button
                 type="button"
                 onClick={() => setIsEditingAgreement(!isEditingAgreement)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${
-                  isEditingAgreement 
-                    ? 'bg-amber-500 text-slate-950 font-black' 
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 ${isEditingAgreement
+                    ? 'bg-amber-500 text-slate-950 font-black'
                     : 'bg-slate-800 hover:bg-slate-700 text-amber-300'
-                }`}
+                  }`}
               >
                 <Edit3 className="w-3.5 h-3.5" />
                 <span>{isEditingAgreement ? 'Done Editing' : 'Edit Agreement Terms'}</span>
@@ -194,7 +193,7 @@ export function LocalDocumentsModal({
               <Languages className="w-3.5 h-3.5" />
               <span>{docLang === 'en' ? 'Switch to Sinhala' : 'Switch to English'}</span>
             </button>
-            
+
             <button
               onClick={handlePrint}
               className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold transition flex items-center gap-2 shadow-lg"
@@ -202,7 +201,7 @@ export function LocalDocumentsModal({
               <Printer className="w-4 h-4" />
               <span>Print A4 Document</span>
             </button>
-            
+
             <button
               onClick={onClose}
               className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 transition"
@@ -214,7 +213,7 @@ export function LocalDocumentsModal({
 
         {/* Printable Document Body */}
         <div id="printable-document" className="p-4 sm:p-8 lg:p-12 space-y-6 text-slate-900 bg-white overflow-x-auto">
-          
+
           {/* Header */}
           <div className="flex flex-col sm:flex-row justify-between items-start gap-4 border-b-2 border-slate-900 pb-5">
             <div className="flex items-center gap-3 sm:gap-4">
@@ -238,25 +237,25 @@ export function LocalDocumentsModal({
             <div className="text-left sm:text-right font-mono sm:ml-auto">
               <div className="text-xs uppercase font-bold text-slate-500 tracking-wider">
                 {type === 'STATEMENT' ? 'STATEMENT OF ACCOUNT' :
-                 type === 'AGREEMENT' ? 'RENTAL LEASE AGREEMENT' :
-                 type === 'DELIVERY' ? (singleRental ? 'INDIVIDUAL DELIVERY NOTE' : 'MASTER DELIVERY NOTE') :
-                 type === 'RENTAL_SETTLEMENT_INVOICE' ? 'RENTAL PARTNER SETTLEMENT INVOICE' :
-                 type === 'RENTAL_SETTLEMENT_STATEMENT' ? 'RENTAL PARTNER STATEMENT OF ACCOUNT' :
-                 type === 'PARTNER_PAYMENT_VOUCHER' ? 'PARTNER PAYMENT SETTLEMENT VOUCHER' :
-                 (type || 'DOCUMENT').replace(/_/g, ' ')}
+                  type === 'AGREEMENT' ? 'RENTAL LEASE AGREEMENT' :
+                    type === 'DELIVERY' ? (singleRental ? 'INDIVIDUAL DELIVERY NOTE' : 'MASTER DELIVERY NOTE') :
+                      type === 'RENTAL_SETTLEMENT_INVOICE' ? 'RENTAL PARTNER SETTLEMENT INVOICE' :
+                        type === 'RENTAL_SETTLEMENT_STATEMENT' ? 'RENTAL PARTNER STATEMENT OF ACCOUNT' :
+                          type === 'PARTNER_PAYMENT_VOUCHER' ? 'PARTNER PAYMENT SETTLEMENT VOUCHER' :
+                            (type || 'DOCUMENT').replace(/_/g, ' ')}
               </div>
               <div className="text-lg font-black text-slate-900 mt-0.5">
                 {type === 'RECEIPT' ? (payment?.refNo || payment?.id) :
-                 type === 'QUOTATION' ? quotation?.quoteNo :
-                 type === 'RETURN' ? (meta?.slipNo || 'RET-YARD') :
-                 type === 'STATEMENT' ? `STMT-${customer?.code || 'CL'}-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}` :
-                 type === 'AGREEMENT' ? `AGR-${customer?.code || 'CL'}-2026` :
-                 type === 'DELIVERY' ? (singleRental ? `DN-${singleRental.machineCode}-${Date.now().toString().slice(-4)}` : `DN-${customer?.code || 'CL'}-${Date.now().toString().slice(-4)}`) :
-                 type === 'INVOICE' ? `INV-${customer?.code || 'CL'}-${(activeInvoiceMonth || '').replace(/\s+/g, '').toUpperCase()}` :
-                 type === 'RENTAL_SETTLEMENT_INVOICE' ? `SINV-${partner?.code || 'PTR'}-${String(meta?.cycleMonth || month || '').replace(/\s+/g, '').toUpperCase()}` :
-                 type === 'RENTAL_SETTLEMENT_STATEMENT' ? `RSTMT-${partner?.code || 'PTR'}-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}` :
-                 type === 'PARTNER_PAYMENT_VOUCHER' ? `PV-${partner?.code || 'PTR'}-${(payment?.refNo || payment?.id || Date.now().toString().slice(-4))}` :
-                 `${customer?.code || partner?.code || 'DOC'}-${Date.now().toString().slice(-5)}`}
+                  type === 'QUOTATION' ? quotation?.quoteNo :
+                    type === 'RETURN' ? (meta?.slipNo || 'RET-YARD') :
+                      type === 'STATEMENT' ? `STMT-${customer?.code || 'CL'}-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}` :
+                        type === 'AGREEMENT' ? `AGR-${customer?.code || 'CL'}-2026` :
+                          type === 'DELIVERY' ? (singleRental ? `DN-${singleRental.machineCode}-${Date.now().toString().slice(-4)}` : `DN-${customer?.code || 'CL'}-${Date.now().toString().slice(-4)}`) :
+                            type === 'INVOICE' ? `INV-${customer?.code || 'CL'}-${(activeInvoiceMonth || '').replace(/\s+/g, '').toUpperCase()}` :
+                              type === 'RENTAL_SETTLEMENT_INVOICE' ? `SINV-${partner?.code || 'PTR'}-${String(meta?.cycleMonth || month || '').replace(/\s+/g, '').toUpperCase()}` :
+                                type === 'RENTAL_SETTLEMENT_STATEMENT' ? `RSTMT-${partner?.code || 'PTR'}-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}` :
+                                  type === 'PARTNER_PAYMENT_VOUCHER' ? `PV-${partner?.code || 'PTR'}-${(payment?.refNo || payment?.id || Date.now().toString().slice(-4))}` :
+                                    `${customer?.code || partner?.code || 'DOC'}-${Date.now().toString().slice(-5)}`}
               </div>
               <div className="text-xs text-slate-600 mt-1">
                 Date: {payment?.date || meta?.returnDate || quotation?.date || new Date().toISOString().slice(0, 10)}
@@ -291,39 +290,39 @@ export function LocalDocumentsModal({
                   Active Machinery Fleet Charges for {activeInvoiceMonth} ({invoiceRentals.length} Machines Invoiced)
                 </div>
                 <div className="overflow-x-auto rounded-xl border border-slate-300">
-                <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-100 text-slate-700 uppercase font-mono text-[10px] border-b border-slate-300">
-                    <tr>
-                      <th className="p-3">Code</th>
-                      <th className="p-3">Machinery Fleet Description</th>
-                      <th className="p-3">Tracked Serial (SN)</th>
-                      <th className="p-3">Rental Start Date</th>
-                      <th className="p-3 text-right">Agreed Monthly Hire (LKR)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-200 font-mono">
-                    {invoiceRentals.length === 0 ? (
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-slate-100 text-slate-700 uppercase font-mono text-[10px] border-b border-slate-300">
                       <tr>
-                        <td colSpan={5} className="text-center py-4 text-slate-500 font-sans">
-                          No active machinery deployed for this billing cycle.
-                        </td>
+                        <th className="p-3">Code</th>
+                        <th className="p-3">Machinery Fleet Description</th>
+                        <th className="p-3">Tracked Serial (SN)</th>
+                        <th className="p-3">Rental Start Date</th>
+                        <th className="p-3 text-right">Agreed Monthly Hire (LKR)</th>
                       </tr>
-                    ) : (
-                      invoiceRentals.map(r => (
-                        <tr key={r.machineId}>
-                          <td className="p-3 font-bold text-sky-700">{r.machineCode || 'MCH'}</td>
-                          <td className="p-3 font-sans font-bold text-slate-900">
-                            {r.model}
-                            <span className="text-[10px] text-slate-500 font-mono block">{r.accessories}</span>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200 font-mono">
+                      {invoiceRentals.length === 0 ? (
+                        <tr>
+                          <td colSpan={5} className="text-center py-4 text-slate-500 font-sans">
+                            No active machinery deployed for this billing cycle.
                           </td>
-                          <td className="p-3 text-slate-700">{r.serialNumber || 'Yard Batch'}</td>
-                          <td className="p-3 text-slate-800 font-bold">{r.startDate || '2026-08-01'}</td>
-                          <td className="p-3 text-right font-bold text-slate-900">{formatLKR(r.rentRate)}</td>
                         </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
+                      ) : (
+                        invoiceRentals.map(r => (
+                          <tr key={r.machineId}>
+                            <td className="p-3 font-bold text-sky-700">{r.machineCode || 'MCH'}</td>
+                            <td className="p-3 font-sans font-bold text-slate-900">
+                              {r.model}
+                              <span className="text-[10px] text-slate-500 font-mono block">{r.accessories}</span>
+                            </td>
+                            <td className="p-3 text-slate-700">{r.serialNumber || 'Yard Batch'}</td>
+                            <td className="p-3 text-slate-800 font-bold">{r.startDate || '2026-08-01'}</td>
+                            <td className="p-3 text-right font-bold text-slate-900">{formatLKR(r.rentRate)}</td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
                 </div>{/* overflow-x-auto */}
               </div>
 
@@ -587,42 +586,42 @@ export function LocalDocumentsModal({
               </div>
 
               <div className="overflow-x-auto rounded-xl border border-slate-300">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-slate-100 text-slate-700 font-mono text-[10px] uppercase border-b border-slate-300">
-                  <tr>
-                    <th className="p-2.5">Code</th>
-                    <th className="p-2.5">Machinery Description</th>
-                    <th className="p-2.5">Asset Serial Number (SN)</th>
-                    <th className="p-2.5">Delivered Date</th>
-                    <th className="p-2.5">Delivery Status</th>
-                    <th className="p-2.5">Included Attachments</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200 font-mono">
-                  {deliveryRentals.length === 0 ? (
+                <table className="w-full text-left text-xs">
+                  <thead className="bg-slate-100 text-slate-700 font-mono text-[10px] uppercase border-b border-slate-300">
                     <tr>
-                      <td colSpan={6} className="text-center py-6 text-slate-500 font-sans">
-                        No handovered machinery records found for this delivery note.
-                      </td>
+                      <th className="p-2.5">Code</th>
+                      <th className="p-2.5">Machinery Description</th>
+                      <th className="p-2.5">Asset Serial Number (SN)</th>
+                      <th className="p-2.5">Delivered Date</th>
+                      <th className="p-2.5">Delivery Status</th>
+                      <th className="p-2.5">Included Attachments</th>
                     </tr>
-                  ) : (
-                    deliveryRentals.map(r => (
-                      <tr key={r.machineId}>
-                        <td className="p-2.5 font-bold text-sky-700">{r.machineCode || 'MCH'}</td>
-                        <td className="p-2.5 font-sans font-bold text-slate-900">{r.model}</td>
-                        <td className="p-2.5 text-slate-800 font-bold">{r.serialNumber || 'Yard Batch'}</td>
-                        <td className="p-2.5 text-emerald-700 font-bold">{r.deliveredDate || r.startDate || new Date().toISOString().slice(0, 10)}</td>
-                        <td className="p-2.5 text-center">
-                          <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase border border-emerald-300">
-                            {r.deliveryStatus || 'Handovered'}
-                          </span>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200 font-mono">
+                    {deliveryRentals.length === 0 ? (
+                      <tr>
+                        <td colSpan={6} className="text-center py-6 text-slate-500 font-sans">
+                          No handovered machinery records found for this delivery note.
                         </td>
-                        <td className="p-2.5 text-slate-600 font-sans">{r.accessories || 'Complete Set'}</td>
                       </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
+                    ) : (
+                      deliveryRentals.map(r => (
+                        <tr key={r.machineId}>
+                          <td className="p-2.5 font-bold text-sky-700">{r.machineCode || 'MCH'}</td>
+                          <td className="p-2.5 font-sans font-bold text-slate-900">{r.model}</td>
+                          <td className="p-2.5 text-slate-800 font-bold">{r.serialNumber || 'Yard Batch'}</td>
+                          <td className="p-2.5 text-emerald-700 font-bold">{r.deliveredDate || r.startDate || new Date().toISOString().slice(0, 10)}</td>
+                          <td className="p-2.5 text-center">
+                            <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold uppercase border border-emerald-300">
+                              {r.deliveryStatus || 'Handovered'}
+                            </span>
+                          </td>
+                          <td className="p-2.5 text-slate-600 font-sans">{r.accessories || 'Complete Set'}</td>
+                        </tr>
+                      ))
+                    )}
+                  </tbody>
+                </table>
               </div>{/* overflow-x-auto */}
 
               <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-700 text-[11px] leading-relaxed">
@@ -678,36 +677,35 @@ export function LocalDocumentsModal({
                   1. Current Machinery Fleet Allocation
                 </span>
                 <div className="overflow-x-auto rounded-xl border border-slate-300">
-                <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-100 text-slate-700 font-mono text-[10px] uppercase border-b border-slate-300">
-                    <tr>
-                      <th className="p-2.5">Code</th>
-                      <th className="p-2.5">Model Description</th>
-                      <th className="p-2.5">Serial #</th>
-                      <th className="p-2.5">Start Date</th>
-                      <th className="p-2.5 text-center">Delivery Status</th>
-                      <th className="p-2.5 text-right">Monthly Hire</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-200 font-mono">
-                    {(customer.rentals || []).map(r => (
-                      <tr key={r.machineId}>
-                        <td className="p-2.5 font-bold text-sky-700">{r.machineCode}</td>
-                        <td className="p-2.5 font-sans font-bold text-slate-900">{r.model}</td>
-                        <td className="p-2.5">{r.serialNumber}</td>
-                        <td className="p-2.5">{r.startDate || '2026-08-01'}</td>
-                        <td className="p-2.5 text-center">
-                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                            r.deliveryStatus === 'Handovered' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-                          }`}>
-                            {r.deliveryStatus || 'Ongoing'}
-                          </span>
-                        </td>
-                        <td className="p-2.5 text-right font-bold text-slate-900">{formatLKR(r.rentRate)}</td>
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-slate-100 text-slate-700 font-mono text-[10px] uppercase border-b border-slate-300">
+                      <tr>
+                        <th className="p-2.5">Code</th>
+                        <th className="p-2.5">Model Description</th>
+                        <th className="p-2.5">Serial #</th>
+                        <th className="p-2.5">Start Date</th>
+                        <th className="p-2.5 text-center">Delivery Status</th>
+                        <th className="p-2.5 text-right">Monthly Hire</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200 font-mono">
+                      {(customer.rentals || []).map(r => (
+                        <tr key={r.machineId}>
+                          <td className="p-2.5 font-bold text-sky-700">{r.machineCode}</td>
+                          <td className="p-2.5 font-sans font-bold text-slate-900">{r.model}</td>
+                          <td className="p-2.5">{r.serialNumber}</td>
+                          <td className="p-2.5">{r.startDate || '2026-08-01'}</td>
+                          <td className="p-2.5 text-center">
+                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${r.deliveryStatus === 'Handovered' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                              }`}>
+                              {r.deliveryStatus || 'Ongoing'}
+                            </span>
+                          </td>
+                          <td className="p-2.5 text-right font-bold text-slate-900">{formatLKR(r.rentRate)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>{/* overflow-x-auto fleet */}
               </div>
 
@@ -717,36 +715,36 @@ export function LocalDocumentsModal({
                   2. Payment & Remittance Receipts Ledger
                 </span>
                 <div className="overflow-x-auto rounded-xl border border-slate-300">
-                <table className="w-full text-left text-xs">
-                  <thead className="bg-slate-100 text-slate-700 font-mono text-[10px] uppercase border-b border-slate-300">
-                    <tr>
-                      <th className="p-2.5">Payment Date</th>
-                      <th className="p-2.5">Receipt #</th>
-                      <th className="p-2.5">Method</th>
-                      <th className="p-2.5">Target Month</th>
-                      <th className="p-2.5 text-right">Amount Received</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-200 font-mono">
-                    {customerPayments.length === 0 ? (
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-slate-100 text-slate-700 font-mono text-[10px] uppercase border-b border-slate-300">
                       <tr>
-                        <td colSpan={5} className="text-center py-4 text-slate-500 font-sans">
-                          No payment receipts recorded yet for this client.
-                        </td>
+                        <th className="p-2.5">Payment Date</th>
+                        <th className="p-2.5">Receipt #</th>
+                        <th className="p-2.5">Method</th>
+                        <th className="p-2.5">Target Month</th>
+                        <th className="p-2.5 text-right">Amount Received</th>
                       </tr>
-                    ) : (
-                      customerPayments.map(p => (
-                        <tr key={p.id}>
-                          <td className="p-2.5 font-bold text-slate-900">{p.date}</td>
-                          <td className="p-2.5 text-sky-700">{p.refNo || p.id}</td>
-                          <td className="p-2.5 text-slate-600">{p.method}</td>
-                          <td className="p-2.5 text-slate-800">{p.month}</td>
-                          <td className="p-2.5 text-right font-bold text-emerald-700">{formatLKR(p.amount)}</td>
+                    </thead>
+                    <tbody className="divide-y divide-slate-200 font-mono">
+                      {customerPayments.length === 0 ? (
+                        <tr>
+                          <td colSpan={5} className="text-center py-4 text-slate-500 font-sans">
+                            No payment receipts recorded yet for this client.
+                          </td>
                         </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
+                      ) : (
+                        customerPayments.map(p => (
+                          <tr key={p.id}>
+                            <td className="p-2.5 font-bold text-slate-900">{p.date}</td>
+                            <td className="p-2.5 text-sky-700">{p.refNo || p.id}</td>
+                            <td className="p-2.5 text-slate-600">{p.method}</td>
+                            <td className="p-2.5 text-slate-800">{p.month}</td>
+                            <td className="p-2.5 text-right font-bold text-emerald-700">{formatLKR(p.amount)}</td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
                 </div>{/* overflow-x-auto payments */}
               </div>
 
@@ -825,24 +823,24 @@ export function LocalDocumentsModal({
               </div>
 
               <div className="overflow-x-auto rounded-xl border border-slate-300">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-slate-100 text-slate-700 font-mono text-[10px] uppercase border-b border-slate-300">
-                  <tr>
-                    <th className="p-2.5">Model Description</th>
-                    <th className="p-2.5">Serial (SN)</th>
-                    <th className="p-2.5 text-right">Relieved Monthly Hire</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200 font-mono">
-                  {(returnedMachines || []).map((m, idx) => (
-                    <tr key={idx}>
-                      <td className="p-2.5 font-bold font-sans text-slate-900">{m.model}</td>
-                      <td className="p-2.5">{m.serialNumber}</td>
-                      <td className="p-2.5 text-right font-bold text-emerald-700">{formatLKR(m.rentRate)}</td>
+                <table className="w-full text-left text-xs">
+                  <thead className="bg-slate-100 text-slate-700 font-mono text-[10px] uppercase border-b border-slate-300">
+                    <tr>
+                      <th className="p-2.5">Model Description</th>
+                      <th className="p-2.5">Serial (SN)</th>
+                      <th className="p-2.5 text-right">Relieved Monthly Hire</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200 font-mono">
+                    {(returnedMachines || []).map((m, idx) => (
+                      <tr key={idx}>
+                        <td className="p-2.5 font-bold font-sans text-slate-900">{m.model}</td>
+                        <td className="p-2.5">{m.serialNumber}</td>
+                        <td className="p-2.5 text-right font-bold text-emerald-700">{formatLKR(m.rentRate)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>{/* overflow-x-auto return */}
 
               <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 font-mono text-xs space-y-1">
@@ -868,28 +866,28 @@ export function LocalDocumentsModal({
               </div>
 
               <div className="overflow-x-auto rounded-xl border border-slate-300">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-slate-100 text-slate-700 font-mono text-[10px] uppercase border-b border-slate-300">
-                  <tr>
-                    <th className="p-3">Model Description</th>
-                    <th className="p-3">Motor Spec</th>
-                    <th className="p-3 text-center">Qty</th>
-                    <th className="p-3 text-right">Rent / Unit</th>
-                    <th className="p-3 text-right">Monthly Total</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200 font-mono">
-                  {(quotation.items || []).map((it, idx) => (
-                    <tr key={idx}>
-                      <td className="p-3 font-bold font-sans text-slate-900">{it.description}</td>
-                      <td className="p-3 text-slate-600">{it.motorSpec}</td>
-                      <td className="p-3 text-center font-bold">{it.qty}</td>
-                      <td className="p-3 text-right">{formatLKR(it.rate)}</td>
-                      <td className="p-3 text-right font-bold text-slate-900">{formatLKR(it.qty * it.rate)}</td>
+                <table className="w-full text-left text-xs">
+                  <thead className="bg-slate-100 text-slate-700 font-mono text-[10px] uppercase border-b border-slate-300">
+                    <tr>
+                      <th className="p-3">Model Description</th>
+                      <th className="p-3">Motor Spec</th>
+                      <th className="p-3 text-center">Qty</th>
+                      <th className="p-3 text-right">Rent / Unit</th>
+                      <th className="p-3 text-right">Monthly Total</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200 font-mono">
+                    {(quotation.items || []).map((it, idx) => (
+                      <tr key={idx}>
+                        <td className="p-3 font-bold font-sans text-slate-900">{it.description}</td>
+                        <td className="p-3 text-slate-600">{it.motorSpec}</td>
+                        <td className="p-3 text-center font-bold">{it.qty}</td>
+                        <td className="p-3 text-right">{formatLKR(it.rate)}</td>
+                        <td className="p-3 text-right font-bold text-slate-900">{formatLKR(it.qty * it.rate)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>{/* overflow-x-auto quotation */}
             </div>
           )}
@@ -944,8 +942,8 @@ export function LocalDocumentsModal({
                 <div className="text-right">
                   <span className="text-[10px] uppercase font-bold text-amber-700 block mb-1">Billing Cycle:</span>
                   <div className="font-black text-slate-900 text-base">{meta?.cycleMonth || month || 'Current Month'}</div>
-                  <div className="text-slate-600 text-[11px] mt-1">Invoice Ref: {`SINV-${partner.code}-${String(meta?.cycleMonth || month || '').replace(/\s+/g,'').toUpperCase()}`}</div>
-                  <div className="text-slate-600 text-[11px]">Issued: {new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'long',year:'numeric'})}</div>
+                  <div className="text-slate-600 text-[11px] mt-1">Invoice Ref: {`SINV-${partner.code}-${String(meta?.cycleMonth || month || '').replace(/\s+/g, '').toUpperCase()}`}</div>
+                  <div className="text-slate-600 text-[11px]">Issued: {new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })}</div>
                 </div>
               </div>
 
@@ -1028,8 +1026,8 @@ export function LocalDocumentsModal({
                 </div>
                 <div className="text-right">
                   <span className="text-[10px] uppercase font-bold text-amber-700 block mb-1">Statement Reference:</span>
-                  <div className="font-black text-slate-900">{`RSTMT-${partner.code}-${new Date().toISOString().slice(0,10).replace(/-/g,'')}`}</div>
-                  <div className="text-slate-600 text-[11px] mt-1">Generated: {new Date().toLocaleDateString('en-GB', {day:'2-digit',month:'long',year:'numeric'})}</div>
+                  <div className="font-black text-slate-900">{`RSTMT-${partner.code}-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}`}</div>
+                  <div className="text-slate-600 text-[11px] mt-1">Generated: {new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })}</div>
                   <div className="text-[11px] font-bold text-amber-700 mt-2">All-Time Balance Due: {formatLKR(meta?.allTimeBalanceDue || 0)}</div>
                 </div>
               </div>
@@ -1064,7 +1062,7 @@ export function LocalDocumentsModal({
                             <td className="p-2.5 font-mono text-slate-500">{m.startDate}</td>
                             <td className="p-2.5 text-center">
                               <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${m.status === 'Returned' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}`}>
-                                {m.status === 'Returned' ? `Returned ${m.returnDate||''}` : 'Active'}
+                                {m.status === 'Returned' ? `Returned ${m.returnDate || ''}` : 'Active'}
                               </span>
                             </td>
                             <td className="p-2.5 text-right font-bold text-amber-800">{formatLKR(m.partnerRentRate || 0)}</td>
@@ -1121,13 +1119,13 @@ export function LocalDocumentsModal({
               {/* Balance summary */}
               <div className="p-4 bg-amber-50 rounded-xl border border-amber-200 flex justify-between items-center">
                 <div className="space-y-1 text-[11px]">
-                  <div className="flex gap-6"><span className="text-slate-600">Active Machines:</span><span className="font-bold text-emerald-700">{(meta?.sourcedMachines||[]).filter(m=>m.status!=='Returned').length} Units</span></div>
-                  <div className="flex gap-6"><span className="text-slate-600">Returned Machines:</span><span className="font-bold text-amber-700">{(meta?.sourcedMachines||[]).filter(m=>m.status==='Returned').length} Units</span></div>
-                  <div className="flex gap-6"><span className="text-slate-600">Opening Balance:</span><span className="font-bold">{formatLKR(partner.baseOpeningBalance||0)}</span></div>
+                  <div className="flex gap-6"><span className="text-slate-600">Active Machines:</span><span className="font-bold text-emerald-700">{(meta?.sourcedMachines || []).filter(m => m.status !== 'Returned').length} Units</span></div>
+                  <div className="flex gap-6"><span className="text-slate-600">Returned Machines:</span><span className="font-bold text-amber-700">{(meta?.sourcedMachines || []).filter(m => m.status === 'Returned').length} Units</span></div>
+                  <div className="flex gap-6"><span className="text-slate-600">Opening Balance:</span><span className="font-bold">{formatLKR(partner.baseOpeningBalance || 0)}</span></div>
                 </div>
                 <div className="text-right">
                   <div className="text-[10px] uppercase font-bold text-amber-700 mb-1">Net Balance Payable (Live)</div>
-                  <div className={`text-3xl font-black ${(meta?.allTimeBalanceDue||0)>0?'text-rose-700':'text-emerald-700'}`}>{formatLKR(meta?.allTimeBalanceDue||0)}</div>
+                  <div className={`text-3xl font-black ${(meta?.allTimeBalanceDue || 0) > 0 ? 'text-rose-700' : 'text-emerald-700'}`}>{formatLKR(meta?.allTimeBalanceDue || 0)}</div>
                 </div>
               </div>
             </div>

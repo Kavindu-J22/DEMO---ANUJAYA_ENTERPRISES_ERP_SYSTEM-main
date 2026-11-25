@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const LocalConfigSchema = new mongoose.Schema({
   key: { type: String, default: 'local_config', unique: true },
   activeMonth: { type: String, default: "August 2026" },
-  allMonths: { 
-    type: [String], 
-    default: ["August 2026", "September 2026", "October 2026", "November 2026"] 
+  allMonths: {
+    type: [String],
+    default: ["August 2026", "September 2026", "October 2026", "November 2026"]
   },
   company: {
     name: { type: String, default: "ENTERPRISES ERP SOLUTIONS" },
@@ -15,7 +15,7 @@ const LocalConfigSchema = new mongoose.Schema({
     addressEn: { type: String, default: "200/2B/1, Pahala Kosgama, Kosgama, Sri Lanka" },
     addressSi: { type: String, default: "200/2බී/1, පහළ කොස්ගම, කොස්ගම, ශ්‍රී ලංකාව" },
     hotline: { type: String, default: "077 412 7702" },
-    email: { type: String, default: "anujayaenterprises.info@gmail.com" }
+    email: { type: String, default: "info@enterprises-erp.com" }
   },
   bank: {
     bankNameEn: { type: String, default: "Bank Of Ceylon" },
@@ -26,8 +26,8 @@ const LocalConfigSchema = new mongoose.Schema({
   alertSettings: {
     enabled: { type: Boolean, default: true },
     dueDayOfMonth: { type: Number, default: 5 },
-    senderEmail: { type: String, default: "anujayaenterprises.info@gmail.com" },
-    adminNotificationEmail: { type: String, default: "anujayaenterprises.info@gmail.com" },
+    senderEmail: { type: String, default: "notifications@enterprises-erp.com" },
+    adminNotificationEmail: { type: String, default: "admin@enterprises-erp.com" },
     cronHour: { type: Number, default: 8 } // 08:00 AM daily
   }
 }, { timestamps: true });

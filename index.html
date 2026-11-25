@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- FontAwesome 6 Pro CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -53,10 +56,23 @@
   </script>
 
   <style>
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #06090e; }
-    ::-webkit-scrollbar-thumb { background: #1e2b44; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #384b70; }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #06090e;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1e2b44;
+      border-radius: 9999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #384b70;
+    }
 
     .glass-card {
       background: rgba(16, 22, 35, 0.85);
@@ -64,6 +80,7 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
+
     .glass-header {
       background: rgba(10, 14, 23, 0.94);
       backdrop-filter: blur(24px);
@@ -76,10 +93,12 @@
       border-radius: 6px;
       transition: all 0.2s ease;
     }
+
     .editable-cell:hover {
       background: rgba(14, 165, 233, 0.14);
       outline: 1px dashed rgba(14, 165, 233, 0.6);
     }
+
     .editable-cell:focus {
       background: rgba(10, 14, 23, 0.98);
       outline: 2px solid #0ea5e9;
@@ -91,12 +110,16 @@
         size: A4 portrait;
         margin: 10mm;
       }
+
       body * {
         visibility: hidden !important;
       }
-      #printableInvoiceModal, #printableInvoiceModal * {
+
+      #printableInvoiceModal,
+      #printableInvoiceModal * {
         visibility: visible !important;
       }
+
       #printableInvoiceModal {
         position: absolute !important;
         left: 0 !important;
@@ -107,6 +130,7 @@
         margin: 0 !important;
         display: block !important;
       }
+
       #printableInvoiceWrapper {
         width: 100% !important;
         max-width: 100% !important;
@@ -115,42 +139,51 @@
         padding: 4mm !important;
         color: black !important;
       }
+
       .no-print {
         display: none !important;
       }
     }
   </style>
 </head>
-<body class="bg-carbon-950 text-slate-100 font-sans min-h-screen flex flex-col selection:bg-sky-500 selection:text-black">
+
+<body
+  class="bg-carbon-950 text-slate-100 font-sans min-h-screen flex flex-col selection:bg-sky-500 selection:text-black">
 
   <!-- ================= LOGIN SCREEN GUARD MODAL ================= -->
   <div id="loginGateModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4">
-    <div class="glass-card max-w-sm w-full p-8 rounded-3xl border border-carbon-700/80 text-center space-y-5 shadow-2xl relative">
-      <div class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-tr from-sky-600 via-indigo-600 to-emerald-500 p-[2px] shadow-lg shadow-sky-950/60">
+    <div
+      class="glass-card max-w-sm w-full p-8 rounded-3xl border border-carbon-700/80 text-center space-y-5 shadow-2xl relative">
+      <div
+        class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-tr from-sky-600 via-indigo-600 to-emerald-500 p-[2px] shadow-lg shadow-sky-950/60">
         <div class="w-full h-full bg-carbon-900 rounded-[14px] flex items-center justify-center">
           <i class="fa-solid fa-shield-halved text-xl text-sky-400"></i>
         </div>
       </div>
       <div>
         <h3 class="font-display font-black text-lg text-white">ANUJAYA & GLOBAL ERP</h3>
+        <h3 class="font-display font-black text-lg text-white">ENTERPRISE & GLOBAL ERP</h3>
         <p class="text-xs text-slate-400 mt-1 font-mono">Consortium Role Authentication</p>
       </div>
 
       <div class="space-y-4 font-mono">
         <div class="flex gap-2">
-          <button type="button" id="roleBtnAdmin" onclick="selectLoginRole('ADMIN')" class="flex-1 py-2.5 rounded-xl text-xs font-bold border border-sky-500 bg-sky-600/30 text-sky-300 transition">
+          <button type="button" id="roleBtnAdmin" onclick="selectLoginRole('ADMIN')"
+            class="flex-1 py-2.5 rounded-xl text-xs font-bold border border-sky-500 bg-sky-600/30 text-sky-300 transition">
             Consortium Admin
           </button>
-          <button type="button" id="roleBtnPartner" onclick="selectLoginRole('PARTNER')" class="flex-1 py-2.5 rounded-xl text-xs font-bold border border-carbon-700 bg-carbon-850 text-slate-400 transition">
+          <button type="button" id="roleBtnPartner" onclick="selectLoginRole('PARTNER')"
+            class="flex-1 py-2.5 rounded-xl text-xs font-bold border border-carbon-700 bg-carbon-850 text-slate-400 transition">
             Partner View
           </button>
         </div>
 
-        <input type="password" id="loginPinInput" maxlength="6" placeholder="••••" 
-               class="w-full text-center tracking-[0.5em] text-2xl py-3 rounded-xl bg-carbon-950 border border-carbon-700 text-sky-400 font-mono focus:outline-none focus:border-sky-400 font-bold"
-               onkeydown="if(event.key === 'Enter') handleLoginSubmit()">
+        <input type="password" id="loginPinInput" maxlength="6" placeholder="••••"
+          class="w-full text-center tracking-[0.5em] text-2xl py-3 rounded-xl bg-carbon-950 border border-carbon-700 text-sky-400 font-mono focus:outline-none focus:border-sky-400 font-bold"
+          onkeydown="if(event.key === 'Enter') handleLoginSubmit()">
 
-        <button onclick="handleLoginSubmit()" class="w-full py-3 bg-gradient-to-r from-sky-600 to-emerald-600 hover:from-sky-500 hover:to-emerald-500 font-bold text-xs uppercase tracking-wider rounded-xl text-white shadow-lg transition">
+        <button onclick="handleLoginSubmit()"
+          class="w-full py-3 bg-gradient-to-r from-sky-600 to-emerald-600 hover:from-sky-500 hover:to-emerald-500 font-bold text-xs uppercase tracking-wider rounded-xl text-white shadow-lg transition">
           Unlock System
         </button>
       </div>
@@ -161,24 +194,33 @@
   <header class="glass-header sticky top-0 z-40">
     <div class="max-w-[1900px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20 gap-4">
-        
+
         <!-- Conglomerate Brand Identity -->
         <div class="flex items-center gap-4">
-          <div class="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-600 via-indigo-600 to-emerald-500 p-[2px] shadow-lg shadow-sky-950/50">
+          <div
+            class="relative flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-600 via-indigo-600 to-emerald-500 p-[2px] shadow-lg shadow-sky-950/50">
             <div class="w-full h-full bg-carbon-900 rounded-[14px] flex items-center justify-center">
-              <i class="fa-solid fa-industry text-xl text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-400"></i>
+              <i
+                class="fa-solid fa-industry text-xl text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-400"></i>
             </div>
             <span class="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-carbon-900"></span>
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span
+                class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-carbon-900"></span>
             </span>
           </div>
 
           <div>
             <div class="flex items-center gap-2.5">
-              <span id="headerBrandTitle" class="font-display font-black text-xl tracking-tight text-white uppercase">ENTERPRISES ERP SOLUTIONS</span>
-              <span class="text-[10px] font-mono font-bold tracking-widest px-2 py-0.5 rounded-md bg-sky-950 text-sky-300 border border-sky-800">EQUITY CONSORTIUM</span>
-              <span id="userRoleBadge" class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800 uppercase">ADMIN</span>
+              <span id="headerBrandTitle"
+                class="font-display font-black text-xl tracking-tight text-white uppercase">ENTERPRISES ERP
+                SOLUTIONS</span>
+              <span
+                class="text-[10px] font-mono font-bold tracking-widest px-2 py-0.5 rounded-md bg-sky-950 text-sky-300 border border-sky-800">EQUITY
+                CONSORTIUM</span>
+              <span id="userRoleBadge"
+                class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800 uppercase">ADMIN</span>
             </div>
             <div class="text-xs text-slate-400 flex items-center gap-2 font-medium">
               <span class="text-sky-400 font-bold" id="navCompXName">ENTERPRISES ERP SOLUTIONS</span>
@@ -191,26 +233,34 @@
         </div>
 
         <!-- Navigation Tabs -->
-        <nav class="hidden xl:flex items-center gap-1.5 bg-carbon-900/90 p-1.5 rounded-2xl border border-carbon-700/60 shadow-inner">
-          <button onclick="switchTab('dashboard')" id="nav-dashboard" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-white bg-sky-600/25 border border-sky-500/40 transition flex items-center gap-2">
+        <nav
+          class="hidden xl:flex items-center gap-1.5 bg-carbon-900/90 p-1.5 rounded-2xl border border-carbon-700/60 shadow-inner">
+          <button onclick="switchTab('dashboard')" id="nav-dashboard"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-white bg-sky-600/25 border border-sky-500/40 transition flex items-center gap-2">
             <i class="fa-solid fa-chart-pie text-sky-400"></i>
             <span data-i18n="nav_dashboard">Executive Dashboard</span>
           </button>
-          <button onclick="switchTab('inventory')" id="nav-inventory" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-carbon-800 transition flex items-center gap-2">
+          <button onclick="switchTab('inventory')" id="nav-inventory"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-carbon-800 transition flex items-center gap-2">
             <i class="fa-solid fa-boxes-stacked text-amber-400"></i>
             <span data-i18n="nav_inventory">Machinery Master</span>
-            <span id="badgeStockCount" class="ml-1 px-1.5 py-0.5 rounded-md text-[10px] font-mono bg-carbon-700 text-slate-300">26</span>
+            <span id="badgeStockCount"
+              class="ml-1 px-1.5 py-0.5 rounded-md text-[10px] font-mono bg-carbon-700 text-slate-300">26</span>
           </button>
-          <button onclick="switchTab('ledger')" id="nav-ledger" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-carbon-800 transition flex items-center gap-2">
+          <button onclick="switchTab('ledger')" id="nav-ledger"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-carbon-800 transition flex items-center gap-2">
             <i class="fa-solid fa-receipt text-blue-400"></i>
             <span data-i18n="nav_ledger">Sales & Audit Ledger</span>
-            <span id="badgeSalesCount" class="ml-1 px-1.5 py-0.5 rounded-md text-[10px] font-mono bg-blue-950 text-blue-300 border border-blue-800">0</span>
+            <span id="badgeSalesCount"
+              class="ml-1 px-1.5 py-0.5 rounded-md text-[10px] font-mono bg-blue-950 text-blue-300 border border-blue-800">0</span>
           </button>
-          <button onclick="switchTab('customers')" id="nav-customers" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-carbon-800 transition flex items-center gap-2">
+          <button onclick="switchTab('customers')" id="nav-customers"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-carbon-800 transition flex items-center gap-2">
             <i class="fa-solid fa-users text-purple-400"></i>
             <span data-i18n="nav_customers">Apparel Clients</span>
           </button>
-          <button onclick="switchTab('settlement')" id="nav-settlement" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-carbon-800 transition flex items-center gap-2">
+          <button onclick="switchTab('settlement')" id="nav-settlement"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-carbon-800 transition flex items-center gap-2">
             <i class="fa-solid fa-scale-balanced text-emerald-400"></i>
             <span data-i18n="nav_settlement">Partner Accounts</span>
           </button>
@@ -219,7 +269,8 @@
         <!-- Right Controls -->
         <div class="flex items-center gap-2.5">
           <!-- Auto-Save Status -->
-          <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-carbon-900 border border-carbon-700/80 text-[11px] font-mono text-slate-400">
+          <div
+            class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-carbon-900 border border-carbon-700/80 text-[11px] font-mono text-slate-400">
             <i class="fa-solid fa-database text-emerald-400 text-xs"></i>
             <span id="autoSaveIndicator">Database Active</span>
           </div>
@@ -229,42 +280,51 @@
             <span class="text-slate-400 font-medium">1 USD ($) =</span>
             <div class="flex items-center gap-1 font-mono font-bold text-amber-400">
               <span class="text-[11px] text-slate-400">LKR</span>
-              <input type="number" id="globalUsdInput" value="330" step="any" min="1" class="w-16 bg-carbon-900 border-b border-amber-500/50 text-center font-mono text-amber-400 font-bold focus:outline-none focus:border-amber-400 py-0.5 rounded" onchange="updateGlobalUsdRate(this.value)">
+              <input type="number" id="globalUsdInput" value="330" step="any" min="1"
+                class="w-16 bg-carbon-900 border-b border-amber-500/50 text-center font-mono text-amber-400 font-bold focus:outline-none focus:border-amber-400 py-0.5 rounded"
+                onchange="updateGlobalUsdRate(this.value)">
             </div>
-            <button onclick="applyExchangeRateRecalculation()" title="Recalculate Current Stock Valuation" class="admin-only p-1 text-slate-400 hover:text-amber-400 transition">
+            <button onclick="applyExchangeRateRecalculation()" title="Recalculate Current Stock Valuation"
+              class="admin-only p-1 text-slate-400 hover:text-amber-400 transition">
               <i class="fa-solid fa-rotate text-xs"></i>
             </button>
           </div>
 
           <!-- Bilingual Switcher Toggle -->
-          <button onclick="toggleLanguage()" id="langSwitchBtn" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-carbon-850 hover:bg-carbon-800 border border-carbon-700 text-xs font-bold transition shadow-sm">
+          <button onclick="toggleLanguage()" id="langSwitchBtn"
+            class="flex items-center gap-2 px-3 py-2 rounded-xl bg-carbon-850 hover:bg-carbon-800 border border-carbon-700 text-xs font-bold transition shadow-sm">
             <i class="fa-solid fa-language text-sky-400 text-sm"></i>
             <span id="currentLangLabel" class="font-mono text-sky-300">සිංහල</span>
           </button>
 
           <!-- Backups (Admin Only) -->
-          <button onclick="exportFullAuditJson()" title="Download Complete Backup JSON" class="admin-only p-2 rounded-xl bg-carbon-850 hover:bg-carbon-800 border border-carbon-700 text-slate-300 hover:text-white transition">
+          <button onclick="exportFullAuditJson()" title="Download Complete Backup JSON"
+            class="admin-only p-2 rounded-xl bg-carbon-850 hover:bg-carbon-800 border border-carbon-700 text-slate-300 hover:text-white transition">
             <i class="fa-solid fa-download text-sm"></i>
           </button>
-          <button onclick="triggerJsonImport()" title="Restore Backup JSON" class="admin-only p-2 rounded-xl bg-carbon-850 hover:bg-carbon-800 border border-carbon-700 text-slate-300 hover:text-white transition">
+          <button onclick="triggerJsonImport()" title="Restore Backup JSON"
+            class="admin-only p-2 rounded-xl bg-carbon-850 hover:bg-carbon-800 border border-carbon-700 text-slate-300 hover:text-white transition">
             <i class="fa-solid fa-upload text-sm"></i>
           </button>
           <input type="file" id="jsonFileInput" accept=".json" class="hidden" onchange="handleJsonFileRestore(event)">
 
           <!-- Record Sale Trigger -->
-          <button onclick="openSaleModal()" class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-lg transition flex items-center gap-2">
+          <button onclick="openSaleModal()"
+            class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-lg transition flex items-center gap-2">
             <i class="fa-solid fa-cart-shopping"></i>
             <span data-i18n="btn_record_sale">New Dispatch</span>
           </button>
 
           <!-- Add SKU Button (Admin Only) -->
-          <button onclick="openAddMachineModal()" class="admin-only bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-lg transition flex items-center gap-2">
+          <button onclick="openAddMachineModal()"
+            class="admin-only bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-lg transition flex items-center gap-2">
             <i class="fa-solid fa-plus-circle"></i>
             <span data-i18n="btn_add_machine">Add SKU</span>
           </button>
 
           <!-- Logout Button -->
-          <button onclick="handleLogout()" title="Logout User" class="p-2 rounded-xl bg-rose-950/50 hover:bg-rose-900 border border-rose-800 text-rose-300 transition">
+          <button onclick="handleLogout()" title="Logout User"
+            class="p-2 rounded-xl bg-rose-950/50 hover:bg-rose-900 border border-rose-800 text-rose-300 transition">
             <i class="fa-solid fa-right-from-bracket"></i>
           </button>
         </div>
@@ -278,7 +338,8 @@
     <!-- VIEW 1: EXECUTIVE DASHBOARD -->
     <section id="view-dashboard" class="space-y-8">
       <div class="glass-card p-6 sm:p-8 rounded-3xl border border-carbon-700/80 relative overflow-hidden">
-        <div class="relative z-10 flex flex-col lg:flex-row justify-between lg:items-center gap-6 pb-6 border-b border-carbon-700/60">
+        <div
+          class="relative z-10 flex flex-col lg:flex-row justify-between lg:items-center gap-6 pb-6 border-b border-carbon-700/60">
           <div>
             <div class="flex items-center gap-2">
               <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -286,11 +347,13 @@
                 Consortium Executive Financial & Capital Summary
               </h2>
             </div>
-            <p class="text-xs text-slate-400 mt-1 font-mono">Consortium Fleet: 26 Models • 489 Sets Baseline • Spot Rate: 1 USD = <span id="arenaUsdRate">330.00</span> LKR</p>
+            <p class="text-xs text-slate-400 mt-1 font-mono">Consortium Fleet: 26 Models • 489 Sets Baseline • Spot
+              Rate: 1 USD = <span id="arenaUsdRate">330.00</span> LKR</p>
           </div>
 
           <div class="flex flex-wrap items-center gap-2.5">
-            <button onclick="resetToInitialBaseline()" class="admin-only text-xs bg-carbon-800/90 hover:bg-rose-950/60 text-slate-300 hover:text-rose-300 border border-carbon-700 hover:border-rose-800 px-3.5 py-2 rounded-xl transition flex items-center gap-2">
+            <button onclick="resetToInitialBaseline()"
+              class="admin-only text-xs bg-carbon-800/90 hover:bg-rose-950/60 text-slate-300 hover:text-rose-300 border border-carbon-700 hover:border-rose-800 px-3.5 py-2 rounded-xl transition flex items-center gap-2">
               <i class="fa-solid fa-rotate-left text-xs"></i>
               <span data-i18n="btn_reset_defaults">Reset Baseline</span>
             </button>
@@ -299,18 +362,23 @@
 
         <!-- Partnership Capital & Equity Summary Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-carbon-900 to-carbon-850 border border-sky-500/40 relative">
+          <div
+            class="p-6 rounded-2xl bg-gradient-to-br from-carbon-900 to-carbon-850 border border-sky-500/40 relative">
             <div class="flex justify-between items-start">
               <div>
                 <div class="flex items-center gap-2">
                   <span class="w-3 h-3 rounded-md bg-sky-400 inline-block"></span>
-                  <span class="font-display font-extrabold text-xl text-white tracking-wide">ENTERPRISES ERP SOLUTIONS</span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950 text-sky-300 border border-sky-800 font-bold">EQUITY ACCOUNT</span>
+                  <span class="font-display font-extrabold text-xl text-white tracking-wide">ENTERPRISES ERP
+                    SOLUTIONS</span>
+                  <span
+                    class="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950 text-sky-300 border border-sky-800 font-bold">EQUITY
+                    ACCOUNT</span>
                 </div>
                 <p class="text-xs text-slate-400 mt-1 font-mono">Partner Net Realized Earnings & Advance Audit</p>
               </div>
               <div class="text-right">
-                <span class="text-xs text-slate-400 font-medium" data-i18n="lbl_realized_share">Total Realized Net Profit</span>
+                <span class="text-xs text-slate-400 font-medium" data-i18n="lbl_realized_share">Total Realized Net
+                  Profit</span>
                 <div class="text-2xl sm:text-3xl font-black font-mono text-sky-300" id="cardXProfit">Rs. 0.00</div>
               </div>
             </div>
@@ -327,18 +395,22 @@
             </div>
           </div>
 
-          <div class="p-6 rounded-2xl bg-gradient-to-br from-carbon-900 to-carbon-850 border border-emerald-500/40 relative">
+          <div
+            class="p-6 rounded-2xl bg-gradient-to-br from-carbon-900 to-carbon-850 border border-emerald-500/40 relative">
             <div class="flex justify-between items-start">
               <div>
                 <div class="flex items-center gap-2">
                   <span class="w-3 h-3 rounded-md bg-emerald-400 inline-block"></span>
                   <span class="font-display font-extrabold text-xl text-white tracking-wide">Global Enterprises</span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">EQUITY ACCOUNT</span>
+                  <span
+                    class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">EQUITY
+                    ACCOUNT</span>
                 </div>
                 <p class="text-xs text-slate-400 mt-1 font-mono">Partner Net Realized Earnings & Advance Audit</p>
               </div>
               <div class="text-right">
-                <span class="text-xs text-slate-400 font-medium" data-i18n="lbl_realized_share">Total Realized Net Profit</span>
+                <span class="text-xs text-slate-400 font-medium" data-i18n="lbl_realized_share">Total Realized Net
+                  Profit</span>
                 <div class="text-2xl sm:text-3xl font-black font-mono text-emerald-400" id="cardYProfit">Rs. 0.00</div>
               </div>
             </div>
@@ -358,13 +430,20 @@
 
         <div class="mt-6 pt-2 space-y-2">
           <div class="flex justify-between text-xs font-mono">
-            <span class="text-sky-400 flex items-center gap-1 font-bold">Anujaya Balance: <span id="barXVal">Rs. 0.00</span></span>
-            <span class="text-slate-400 font-semibold" data-i18n="lbl_balance_gauge">Consortium Equity Balance Indicator</span>
-            <span class="text-emerald-400 flex items-center gap-1 font-bold">Global Balance: <span id="barYVal">Rs. 0.00</span></span>
+            <span class="text-sky-400 flex items-center gap-1 font-bold">Anujaya Balance: <span id="barXVal">Rs.
+                0.00</span></span>
+            <span class="text-sky-400 flex items-center gap-1 font-bold">Partner X Balance: <span id="barXVal">Rs.
+                0.00</span></span>
+            <span class="text-slate-400 font-semibold" data-i18n="lbl_balance_gauge">Consortium Equity Balance
+              Indicator</span>
+            <span class="text-emerald-400 flex items-center gap-1 font-bold">Global Balance: <span id="barYVal">Rs.
+                0.00</span></span>
           </div>
           <div class="h-2.5 w-full bg-carbon-900 rounded-full overflow-hidden p-0.5 border border-carbon-700 flex">
-            <div id="progBarX" class="h-full bg-sky-500 rounded-l-full transition-all duration-500" style="width: 50%;"></div>
-            <div id="progBarY" class="h-full bg-emerald-500 rounded-r-full transition-all duration-500" style="width: 50%;"></div>
+            <div id="progBarX" class="h-full bg-sky-500 rounded-l-full transition-all duration-500" style="width: 50%;">
+            </div>
+            <div id="progBarY" class="h-full bg-emerald-500 rounded-r-full transition-all duration-500"
+              style="width: 50%;"></div>
           </div>
         </div>
       </div>
@@ -385,7 +464,8 @@
 
         <div class="glass-card p-5 rounded-2xl border border-carbon-700/70">
           <div class="flex justify-between items-center text-slate-400 mb-2">
-            <span class="text-xs uppercase font-bold tracking-wider" data-i18n="kpi_total_cogs">Total Cost of Goods</span>
+            <span class="text-xs uppercase font-bold tracking-wider" data-i18n="kpi_total_cogs">Total Cost of
+              Goods</span>
             <i class="fa-solid fa-boxes-packing text-amber-400"></i>
           </div>
           <div class="text-xl sm:text-2xl font-black font-mono text-amber-300" id="kpiTotalCost">Rs. 0.00</div>
@@ -397,7 +477,8 @@
 
         <div class="glass-card p-5 rounded-2xl border border-carbon-700/70">
           <div class="flex justify-between items-center text-slate-400 mb-2">
-            <span class="text-xs uppercase font-bold tracking-wider" data-i18n="kpi_net_profit">Consortium Net Profit</span>
+            <span class="text-xs uppercase font-bold tracking-wider" data-i18n="kpi_net_profit">Consortium Net
+              Profit</span>
             <i class="fa-solid fa-sack-dollar text-emerald-400"></i>
           </div>
           <div class="text-xl sm:text-2xl font-black font-mono text-emerald-400" id="kpiNetProfit">Rs. 0.00</div>
@@ -409,11 +490,13 @@
 
         <div class="glass-card p-5 rounded-2xl border border-carbon-700/70">
           <div class="flex justify-between items-center text-slate-400 mb-2">
-            <span class="text-xs uppercase font-bold tracking-wider" data-i18n="kpi_fleet_volume">Dispatched / Total Fleet</span>
+            <span class="text-xs uppercase font-bold tracking-wider" data-i18n="kpi_fleet_volume">Dispatched / Total
+              Fleet</span>
             <i class="fa-solid fa-dolly text-blue-400"></i>
           </div>
           <div class="text-xl sm:text-2xl font-black font-mono text-white">
-            <span id="kpiSoldUnits">0</span> <span class="text-slate-500 font-normal text-sm">/</span> <span id="kpiTotalUnits">489</span>
+            <span id="kpiSoldUnits">0</span> <span class="text-slate-500 font-normal text-sm">/</span> <span
+              id="kpiTotalUnits">489</span>
           </div>
           <div class="text-[11px] text-slate-400 mt-2 flex items-center justify-between">
             <span data-i18n="lbl_stock_rate">Fleet Turnover</span>
@@ -423,7 +506,8 @@
 
         <div class="glass-card p-5 rounded-2xl border border-carbon-700/70">
           <div class="flex justify-between items-center text-slate-400 mb-2">
-            <span class="text-xs uppercase font-bold tracking-wider" data-i18n="kpi_inventory_value">Current Stock Valuation</span>
+            <span class="text-xs uppercase font-bold tracking-wider" data-i18n="kpi_inventory_value">Current Stock
+              Valuation</span>
             <i class="fa-solid fa-warehouse text-purple-400"></i>
           </div>
           <div class="text-xl sm:text-2xl font-black font-mono text-purple-300" id="kpiStockValuation">Rs. 0.00</div>
@@ -435,7 +519,8 @@
 
         <div class="glass-card p-5 rounded-2xl border border-carbon-700/70">
           <div class="flex justify-between items-center text-slate-400 mb-2">
-            <span class="text-xs uppercase font-bold tracking-wider" data-i18n="kpi_receivables">Total Receivables</span>
+            <span class="text-xs uppercase font-bold tracking-wider" data-i18n="kpi_receivables">Total
+              Receivables</span>
             <i class="fa-solid fa-file-invoice-dollar text-rose-400"></i>
           </div>
           <div class="text-xl sm:text-2xl font-black font-mono text-rose-400" id="kpiTotalReceivables">Rs. 0.00</div>
@@ -449,12 +534,14 @@
       <!-- Dashboard Visual Hub -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="glass-card p-6 rounded-3xl border border-carbon-700/70 lg:col-span-2 space-y-4">
-          <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-carbon-700/60 pb-4">
+          <div
+            class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-carbon-700/60 pb-4">
             <h3 class="font-display font-bold text-lg text-white flex items-center gap-2">
               <i class="fa-solid fa-bolt text-amber-400"></i>
               <span data-i18n="sec_recent_activity">Recent Dispatches & Invoicing Log</span>
             </h3>
-            <button onclick="openSaleModal()" class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 transition">
+            <button onclick="openSaleModal()"
+              class="text-xs font-semibold text-emerald-400 hover:text-emerald-300 flex items-center gap-1.5 transition">
               <i class="fa-solid fa-plus"></i> <span data-i18n="btn_record_sale">New Dispatch</span>
             </button>
           </div>
@@ -495,7 +582,8 @@
               <span>Consortium Auditing Active</span>
             </div>
             <p class="text-slate-400 text-[11px] leading-relaxed">
-              All import costs, customs charges, and realized net earnings are distributed equally to Consortium partner ledgers upon invoice settlement.
+              All import costs, customs charges, and realized net earnings are distributed equally to Consortium partner
+              ledgers upon invoice settlement.
             </p>
           </div>
         </div>
@@ -510,16 +598,20 @@
             <i class="fa-solid fa-boxes-stacked text-amber-400"></i>
             <span data-i18n="sec_inventory_title">Machinery Master Fleet (Landed Costing & Benchmarks)</span>
           </h2>
-          <p class="text-xs text-slate-400 font-mono mt-1">26 Total Models • 489 Sets Baseline • In-line cell edits auto-save to master storage</p>
+          <p class="text-xs text-slate-400 font-mono mt-1">26 Total Models • 489 Sets Baseline • In-line cell edits
+            auto-save to master storage</p>
         </div>
 
         <div class="flex flex-wrap items-center gap-2.5">
           <div class="relative">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500 text-xs"></i>
-            <input type="text" id="invSearchInput" oninput="applyInventoryFilters()" placeholder="Search Model, Brand, SKU..." class="bg-carbon-900 border border-carbon-700 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 w-56 sm:w-64">
+            <input type="text" id="invSearchInput" oninput="applyInventoryFilters()"
+              placeholder="Search Model, Brand, SKU..."
+              class="bg-carbon-900 border border-carbon-700 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 w-56 sm:w-64">
           </div>
 
-          <select id="invBrandFilter" onchange="applyInventoryFilters()" class="bg-carbon-900 border border-carbon-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-sky-400 font-mono">
+          <select id="invBrandFilter" onchange="applyInventoryFilters()"
+            class="bg-carbon-900 border border-carbon-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-sky-400 font-mono">
             <option value="ALL">All Brands</option>
             <option value="JUKI">JUKI</option>
             <option value="PEGASUS">PEGASUS</option>
@@ -528,12 +620,14 @@
             <option value="OTHER">OTHER</option>
           </select>
 
-          <button onclick="exportInventoryToCSV()" class="admin-only bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition">
+          <button onclick="exportInventoryToCSV()"
+            class="admin-only bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-file-csv text-emerald-400 text-sm"></i>
             <span>Export CSV</span>
           </button>
 
-          <button onclick="openAddMachineModal()" class="admin-only bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-lg transition">
+          <button onclick="openAddMachineModal()"
+            class="admin-only bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-lg transition">
             <i class="fa-solid fa-plus"></i>
             <span>Add Machinery SKU</span>
           </button>
@@ -543,7 +637,8 @@
       <div class="glass-card rounded-3xl border border-carbon-700/80 overflow-hidden shadow-2xl">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs whitespace-nowrap">
-            <thead class="text-slate-400 uppercase bg-carbon-900/90 font-bold border-b border-carbon-700 font-mono tracking-wider">
+            <thead
+              class="text-slate-400 uppercase bg-carbon-900/90 font-bold border-b border-carbon-700 font-mono tracking-wider">
               <tr>
                 <th class="px-4 py-4">SKU</th>
                 <th class="px-4 py-4">Brand</th>
@@ -574,20 +669,25 @@
             <i class="fa-solid fa-receipt text-blue-400"></i>
             <span data-i18n="sec_ledger_title">Sales Ledger & Asset Audit Log</span>
           </h2>
-          <p class="text-xs text-slate-400 font-mono mt-1">Official dispatch records with locked historical rates, serial numbers, and payment status</p>
+          <p class="text-xs text-slate-400 font-mono mt-1">Official dispatch records with locked historical rates,
+            serial numbers, and payment status</p>
         </div>
 
         <div class="flex flex-wrap items-center gap-3">
           <div class="relative">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500 text-xs"></i>
-            <input type="text" id="salesSearchInput" oninput="applySalesFilters()" placeholder="Search Invoice, Customer, Serial #..." class="bg-carbon-900 border border-carbon-700 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 w-56">
+            <input type="text" id="salesSearchInput" oninput="applySalesFilters()"
+              placeholder="Search Invoice, Customer, Serial #..."
+              class="bg-carbon-900 border border-carbon-700 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-sky-400 w-56">
           </div>
 
-          <button onclick="exportSalesToCSV()" class="admin-only bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition">
+          <button onclick="exportSalesToCSV()"
+            class="admin-only bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-file-csv text-blue-400 text-sm"></i>
             <span>Export Ledger (CSV)</span>
           </button>
-          <button onclick="openSaleModal()" class="bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-lg transition">
+          <button onclick="openSaleModal()"
+            class="bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-lg transition">
             <i class="fa-solid fa-plus"></i>
             <span>Record New Dispatch</span>
           </button>
@@ -597,7 +697,8 @@
       <div class="glass-card rounded-3xl border border-carbon-700/80 overflow-hidden shadow-2xl">
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs whitespace-nowrap">
-            <thead class="text-slate-400 uppercase bg-carbon-900/90 font-bold border-b border-carbon-700 font-mono tracking-wider">
+            <thead
+              class="text-slate-400 uppercase bg-carbon-900/90 font-bold border-b border-carbon-700 font-mono tracking-wider">
               <tr>
                 <th class="px-4 py-4">Invoice #</th>
                 <th class="px-4 py-4">Date</th>
@@ -627,13 +728,16 @@
             <i class="fa-solid fa-users text-purple-400"></i>
             <span data-i18n="sec_customer_title">Apparel Manufacturing Clients</span>
           </h2>
-          <p class="text-xs text-slate-400 font-mono mt-1">Consortium commercial accounts with volume turnover and outstanding balances</p>
+          <p class="text-xs text-slate-400 font-mono mt-1">Consortium commercial accounts with volume turnover and
+            outstanding balances</p>
         </div>
 
         <div class="flex items-center gap-3">
           <div class="relative">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500 text-xs"></i>
-            <input type="text" id="customerSearchInput" oninput="applyCustomerFilters()" placeholder="Search Client, City, Phone..." class="bg-carbon-900 border border-carbon-700 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-400 w-64">
+            <input type="text" id="customerSearchInput" oninput="applyCustomerFilters()"
+              placeholder="Search Client, City, Phone..."
+              class="bg-carbon-900 border border-carbon-700 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-purple-400 w-64">
           </div>
         </div>
       </div>
@@ -649,15 +753,18 @@
             <i class="fa-solid fa-scale-balanced text-emerald-400"></i>
             <span data-i18n="sec_settlement_title">Consortium Capital & Retained Earnings Reconciliation</span>
           </h2>
-          <p class="text-xs text-slate-400 font-mono mt-1">Official financial settlement between ENTERPRISES ERP SOLUTIONS and Global Enterprises</p>
+          <p class="text-xs text-slate-400 font-mono mt-1">Official financial settlement between ENTERPRISES ERP
+            SOLUTIONS and Global Enterprises</p>
         </div>
 
         <div class="flex items-center gap-3">
-          <button onclick="openDisbursementModal()" class="admin-only bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
+          <button onclick="openDisbursementModal()"
+            class="admin-only bg-carbon-800 hover:bg-carbon-700 text-slate-200 border border-carbon-700 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition">
             <i class="fa-solid fa-hand-holding-dollar text-emerald-400"></i>
             <span>Log Partner Capital Draw</span>
           </button>
-          <button onclick="window.print()" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-lg transition">
+          <button onclick="window.print()"
+            class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-lg transition">
             <i class="fa-solid fa-print"></i>
             <span>Print Financial Statement</span>
           </button>
@@ -669,15 +776,20 @@
           <div>
             <div class="flex items-center gap-2">
               <span class="font-display font-black text-2xl text-white">ENTERPRISES ERP SOLUTIONS</span>
-              <span class="text-xs px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 font-mono">FINANCIAL AUDIT</span>
+              <span
+                class="text-xs px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 font-mono">FINANCIAL
+                AUDIT</span>
             </div>
-            <p class="text-xs text-slate-400 mt-1 font-mono">Consortium Partners: ENTERPRISES ERP SOLUTIONS & Global Enterprises</p>
-            <p class="text-xs text-slate-400 font-mono mt-0.5">Audit Timestamp: <span id="settleAuditDate" class="text-slate-200 font-bold"></span></p>
+            <p class="text-xs text-slate-400 mt-1 font-mono">Consortium Partners: ENTERPRISES ERP SOLUTIONS & Global
+              Enterprises</p>
+            <p class="text-xs text-slate-400 font-mono mt-0.5">Audit Timestamp: <span id="settleAuditDate"
+                class="text-slate-200 font-bold"></span></p>
           </div>
 
           <div class="text-left sm:text-right font-mono text-xs">
             <div class="text-slate-400">Spot Exchange Anchor:</div>
-            <div class="text-amber-400 font-bold text-sm">1 USD ($) = <span id="settleExchangeRate">330.00</span> LKR</div>
+            <div class="text-amber-400 font-bold text-sm">1 USD ($) = <span id="settleExchangeRate">330.00</span> LKR
+            </div>
           </div>
         </div>
 
@@ -708,7 +820,8 @@
             </div>
           </div>
 
-          <div class="p-5 rounded-2xl bg-carbon-900 border border-purple-500/40 space-y-2 flex flex-col justify-between">
+          <div
+            class="p-5 rounded-2xl bg-carbon-900 border border-purple-500/40 space-y-2 flex flex-col justify-between">
             <div>
               <div class="text-xs uppercase font-bold text-purple-400">Consortium Balance Variance</div>
               <div class="text-xl sm:text-2xl font-black font-mono text-purple-300" id="settleBoxDelta">Rs. 0.00</div>
@@ -737,20 +850,25 @@
   </main>
 
   <!-- MODAL 1: POS SALES DISPATCH TERMINAL -->
-  <div id="saleModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="glass-card bg-carbon-900 max-w-2xl w-full rounded-3xl border border-carbon-700 p-6 sm:p-8 space-y-6 shadow-2xl relative my-8">
-      
+  <div id="saleModal"
+    class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div
+      class="glass-card bg-carbon-900 max-w-2xl w-full rounded-3xl border border-carbon-700 p-6 sm:p-8 space-y-6 shadow-2xl relative my-8">
+
       <div class="flex justify-between items-center border-b border-carbon-700/80 pb-4">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-700/60 flex items-center justify-center text-emerald-400 text-lg">
+          <div
+            class="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-700/60 flex items-center justify-center text-emerald-400 text-lg">
             <i class="fa-solid fa-file-invoice"></i>
           </div>
           <div>
-            <h3 class="font-display font-bold text-lg text-white" id="saleModalTitle">Process Machinery Dispatch & Invoice</h3>
+            <h3 class="font-display font-bold text-lg text-white" id="saleModalTitle">Process Machinery Dispatch &
+              Invoice</h3>
             <p class="text-xs text-slate-400 font-mono">Automated Landed Cost Calculation & Asset Freezing</p>
           </div>
         </div>
-        <button onclick="closeModal('saleModal')" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-carbon-800 transition">
+        <button onclick="closeModal('saleModal')"
+          class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-carbon-800 transition">
           <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
@@ -762,18 +880,22 @@
         <div>
           <div class="flex justify-between items-center mb-1.5">
             <label class="text-xs uppercase font-bold text-slate-400">Select Machinery SKU</label>
-            <button type="button" onclick="clearSelectedSaleMachine()" class="text-[11px] font-mono text-rose-400 hover:text-rose-300 flex items-center gap-1">
+            <button type="button" onclick="clearSelectedSaleMachine()"
+              class="text-[11px] font-mono text-rose-400 hover:text-rose-300 flex items-center gap-1">
               <i class="fa-solid fa-circle-xmark"></i>
               <span>Clear Machine Selection</span>
             </button>
           </div>
-          <select id="modalSaleMachine" onchange="onModalSaleMachineChange(this.value)" required class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-3 text-xs sm:text-sm text-white font-mono focus:outline-none focus:border-sky-400"></select>
+          <select id="modalSaleMachine" onchange="onModalSaleMachineChange(this.value)" required
+            class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-3 text-xs sm:text-sm text-white font-mono focus:outline-none focus:border-sky-400"></select>
         </div>
 
-        <div id="modalMachineMetaCard" class="hidden bg-carbon-950/80 border border-carbon-700 rounded-2xl p-4 space-y-3">
+        <div id="modalMachineMetaCard"
+          class="hidden bg-carbon-950/80 border border-carbon-700 rounded-2xl p-4 space-y-3">
           <div class="flex justify-between items-start">
             <div>
-              <span id="modalMetaBrand" class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-950 text-sky-300 border border-sky-800">BRAND</span>
+              <span id="modalMetaBrand"
+                class="px-2 py-0.5 rounded text-[10px] font-bold bg-sky-950 text-sky-300 border border-sky-800">BRAND</span>
               <span id="modalMetaModel" class="font-bold text-white text-sm ml-2">MODEL</span>
             </div>
             <div class="text-right font-mono">
@@ -787,11 +909,13 @@
               <div class="text-[10px] text-slate-500 uppercase">Calculated Landed Cost</div>
               <div class="font-bold text-amber-400" id="modalMetaCost">Rs. 0</div>
             </div>
-            <div onclick="applyModalPresetPrice('ws')" class="bg-carbon-900 p-2 rounded-xl border border-carbon-800 cursor-pointer hover:border-sky-500/50 transition">
+            <div onclick="applyModalPresetPrice('ws')"
+              class="bg-carbon-900 p-2 rounded-xl border border-carbon-800 cursor-pointer hover:border-sky-500/50 transition">
               <div class="text-[10px] text-slate-500 uppercase">Wholesale Benchmark (Apply)</div>
               <div class="font-bold text-sky-400" id="modalMetaWs">Rs. 0</div>
             </div>
-            <div onclick="applyModalPresetPrice('rt')" class="bg-carbon-900 p-2 rounded-xl border border-carbon-800 cursor-pointer hover:border-emerald-500/50 transition">
+            <div onclick="applyModalPresetPrice('rt')"
+              class="bg-carbon-900 p-2 rounded-xl border border-carbon-800 cursor-pointer hover:border-emerald-500/50 transition">
               <div class="text-[10px] text-slate-500 uppercase">Retail Benchmark (Apply)</div>
               <div class="font-bold text-emerald-400" id="modalMetaRt">Rs. 0</div>
             </div>
@@ -801,41 +925,50 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Quantity (Sets)</label>
-            <input type="number" id="modalSaleQty" min="1" value="1" oninput="calculateModalSaleLive()" required class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-sky-400">
+            <input type="number" id="modalSaleQty" min="1" value="1" oninput="calculateModalSaleLive()" required
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-sm text-white font-mono focus:outline-none focus:border-sky-400">
           </div>
 
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Unit Selling Price (LKR)</label>
-            <input type="number" id="modalSalePrice" step="any" min="0" required oninput="calculateModalSaleLive()" placeholder="Enter selling price" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-sm text-emerald-400 font-mono font-bold focus:outline-none focus:border-sky-400">
+            <input type="number" id="modalSalePrice" step="any" min="0" required oninput="calculateModalSaleLive()"
+              placeholder="Enter selling price"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-sm text-emerald-400 font-mono font-bold focus:outline-none focus:border-sky-400">
           </div>
         </div>
 
         <div>
-          <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Machine Serial Numbers (Asset Tracking)</label>
-          <input type="text" id="modalSaleSerials" placeholder="e.g. SN-8700-1002, SN-8700-1003 (Comma-separated)" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-sky-400">
+          <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Machine Serial Numbers (Asset
+            Tracking)</label>
+          <input type="text" id="modalSaleSerials" placeholder="e.g. SN-8700-1002, SN-8700-1003 (Comma-separated)"
+            class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-sky-400">
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Client / Apparel Factory Name</label>
-            <input type="text" id="modalSaleCustomer" required placeholder="e.g. MAS Active, Brandix, Nilwala Tailors" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-sky-400">
+            <input type="text" id="modalSaleCustomer" required placeholder="e.g. MAS Active, Brandix, Nilwala Tailors"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-sky-400">
           </div>
 
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Contact Phone Number</label>
-            <input type="text" id="modalSalePhone" placeholder="077-xxxxxxx" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-sky-400">
+            <input type="text" id="modalSalePhone" placeholder="077-xxxxxxx"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-sky-400">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Region / City</label>
-            <input type="text" id="modalSaleRegion" value="Colombo / Western Province" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-sky-400 font-mono">
+            <input type="text" id="modalSaleRegion" value="Colombo / Western Province"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-sky-400 font-mono">
           </div>
 
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Payment Terms</label>
-            <select id="modalSalePayment" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-sky-400 font-mono">
+            <select id="modalSalePayment"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-sky-400 font-mono">
               <option value="Bank Wire / SLIPS">Bank Wire / SLIPS</option>
               <option value="Corporate Cheque">Corporate Cheque</option>
               <option value="Cash on Delivery">Cash on Delivery</option>
@@ -846,7 +979,8 @@
 
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Settlement Status</label>
-            <select id="modalSalePaymentStatus" onchange="togglePaidAmountField()" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-sky-400 font-mono">
+            <select id="modalSalePaymentStatus" onchange="togglePaidAmountField()"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-sky-400 font-mono">
               <option value="PAID">Fully Paid</option>
               <option value="PARTIAL">Partial Payment</option>
               <option value="PENDING">Credit / Pending</option>
@@ -856,17 +990,20 @@
 
         <div id="modalPaidAmountWrapper" class="hidden">
           <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Amount Paid (LKR)</label>
-          <input type="number" id="modalSalePaidAmount" step="any" min="0" placeholder="Enter amount collected so far" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-emerald-400 font-mono font-bold focus:outline-none focus:border-sky-400">
+          <input type="number" id="modalSalePaidAmount" step="any" min="0" placeholder="Enter amount collected so far"
+            class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-emerald-400 font-mono font-bold focus:outline-none focus:border-sky-400">
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Dispatch Date</label>
-            <input type="date" id="modalSaleDate" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-sky-400">
+            <input type="date" id="modalSaleDate"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-sky-400">
           </div>
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Warranty Certificate Terms</label>
-            <input type="text" id="modalSaleWarranty" value="1-Year Comprehensive Warranty (Motor & PCB)" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-sky-400">
+            <input type="text" id="modalSaleWarranty" value="1-Year Comprehensive Warranty (Motor & PCB)"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-sky-400">
           </div>
         </div>
 
@@ -885,7 +1022,8 @@
           </div>
         </div>
 
-        <button type="submit" id="saleModalSubmitBtn" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+        <button type="submit" id="saleModalSubmitBtn"
+          class="w-full py-3.5 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition flex items-center justify-center gap-2">
           <i class="fa-solid fa-check"></i>
           <span id="saleModalSubmitText">Confirm & Generate Official Tax Invoice</span>
         </button>
@@ -894,11 +1032,14 @@
   </div>
 
   <!-- MODAL 2: ADD / EDIT MACHINE SKU -->
-  <div id="machineModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="glass-card bg-carbon-900 max-w-2xl w-full rounded-3xl border border-carbon-700 p-6 sm:p-8 space-y-6 shadow-2xl relative my-8">
+  <div id="machineModal"
+    class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div
+      class="glass-card bg-carbon-900 max-w-2xl w-full rounded-3xl border border-carbon-700 p-6 sm:p-8 space-y-6 shadow-2xl relative my-8">
       <div class="flex justify-between items-center border-b border-carbon-700/80 pb-4">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-sky-950 border border-sky-700/60 flex items-center justify-center text-sky-400 text-lg">
+          <div
+            class="w-10 h-10 rounded-xl bg-sky-950 border border-sky-700/60 flex items-center justify-center text-sky-400 text-lg">
             <i class="fa-solid fa-gears"></i>
           </div>
           <div>
@@ -906,7 +1047,8 @@
             <p class="text-xs text-slate-400 font-mono">USD FOB Pricing & Port Duty Parameters</p>
           </div>
         </div>
-        <button onclick="closeModal('machineModal')" class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-carbon-800 transition">
+        <button onclick="closeModal('machineModal')"
+          class="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-carbon-800 transition">
           <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
@@ -917,45 +1059,56 @@
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">SKU Code</label>
-            <input type="text" id="mfSku" required placeholder="M-27" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-sky-400 font-bold uppercase">
+            <input type="text" id="mfSku" required placeholder="M-27"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-sky-400 font-bold uppercase">
           </div>
 
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Brand / Make</label>
-            <input type="text" id="mfBrand" required placeholder="JUKI / PEGASUS" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-sky-400 uppercase font-bold">
+            <input type="text" id="mfBrand" required placeholder="JUKI / PEGASUS"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-sky-400 uppercase font-bold">
           </div>
 
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Model / Specifications</label>
-            <input type="text" id="mfModel" required placeholder="e.g. DDL-8700-7" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-sky-400 font-bold">
+            <input type="text" id="mfModel" required placeholder="e.g. DDL-8700-7"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2.5 text-xs text-white font-mono focus:outline-none focus:border-sky-400 font-bold">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Initial Batch Sets</label>
-            <input type="number" id="mfStock" min="1" value="10" required class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-sky-400 font-bold">
+            <input type="number" id="mfStock" min="1" value="10" required
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-sky-400 font-bold">
           </div>
 
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Unit</label>
-            <input type="text" id="mfUnit" value="SETS" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-sky-400">
+            <input type="text" id="mfUnit" value="SETS"
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-white font-mono focus:outline-none focus:border-sky-400">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Factory FOB Cost (USD $)</label>
-            <input type="number" id="mfUsd" min="0" step="any" value="140" oninput="calculateMachineFormCosts()" required class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-amber-400 font-mono font-bold focus:outline-none focus:border-sky-400">
+            <input type="number" id="mfUsd" min="0" step="any" value="140" oninput="calculateMachineFormCosts()"
+              required
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-amber-400 font-mono font-bold focus:outline-none focus:border-sky-400">
           </div>
 
           <div>
-            <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Customs Duty & Port Surcharges (LKR)</label>
-            <input type="number" id="mfTax" min="0" step="any" value="5000" oninput="calculateMachineFormCosts()" required class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-slate-200 font-mono focus:outline-none focus:border-sky-400">
+            <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Customs Duty & Port Surcharges
+              (LKR)</label>
+            <input type="number" id="mfTax" min="0" step="any" value="5000" oninput="calculateMachineFormCosts()"
+              required
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-slate-200 font-mono focus:outline-none focus:border-sky-400">
           </div>
         </div>
 
-        <div class="p-3 bg-carbon-950 rounded-xl border border-carbon-800 flex justify-between items-center text-xs font-mono">
+        <div
+          class="p-3 bg-carbon-950 rounded-xl border border-carbon-800 flex justify-between items-center text-xs font-mono">
           <span class="text-slate-400">Calculated Landed Unit Cost (USD*Spot + Duty):</span>
           <span id="mfComputedCost" class="text-amber-400 font-bold text-sm">Rs. 0.00</span>
         </div>
@@ -963,16 +1116,19 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Wholesale Benchmark (LKR)</label>
-            <input type="number" id="mfWholesale" min="0" step="any" value="61200" required class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-sky-400 font-mono font-bold focus:outline-none focus:border-sky-400">
+            <input type="number" id="mfWholesale" min="0" step="any" value="61200" required
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-sky-400 font-mono font-bold focus:outline-none focus:border-sky-400">
           </div>
 
           <div>
             <label class="block text-xs uppercase font-bold text-slate-400 mb-1.5">Retail Benchmark (LKR)</label>
-            <input type="number" id="mfRetail" min="0" step="any" value="71200" required class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-emerald-400 font-mono font-bold focus:outline-none focus:border-sky-400">
+            <input type="number" id="mfRetail" min="0" step="any" value="71200" required
+              class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-4 py-2 text-xs text-emerald-400 font-mono font-bold focus:outline-none focus:border-sky-400">
           </div>
         </div>
 
-        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+        <button type="submit"
+          class="w-full py-3.5 bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition flex items-center justify-center gap-2">
           <i class="fa-solid fa-floppy-disk"></i>
           <span>Save Machinery SKU</span>
         </button>
@@ -981,9 +1137,10 @@
   </div>
 
   <!-- MODAL 3: COMMERCIAL TAX INVOICE & PRINT PREVIEW -->
-  <div id="printableInvoiceModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+  <div id="printableInvoiceModal"
+    class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
     <div class="max-w-3xl w-full my-6 relative">
-      
+
       <!-- Top Action Bar -->
       <div class="flex justify-between items-center mb-3 no-print">
         <div class="flex items-center gap-2 text-xs font-mono text-sky-400">
@@ -991,35 +1148,47 @@
           <span>ENTERPRISES ERP SOLUTIONS • TAX INVOICE</span>
         </div>
         <div class="flex items-center gap-2">
-          <button onclick="window.print()" class="bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-lg transition">
+          <button onclick="window.print()"
+            class="bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-lg transition">
             <i class="fa-solid fa-print"></i>
             <span>Print / Save PDF</span>
           </button>
-          <button onclick="closeModal('printableInvoiceModal')" class="bg-carbon-800 hover:bg-carbon-700 text-slate-300 p-2 rounded-xl transition">
+          <button onclick="closeModal('printableInvoiceModal')"
+            class="bg-carbon-800 hover:bg-carbon-700 text-slate-300 p-2 rounded-xl transition">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
       </div>
 
       <!-- Printable Sheet -->
-      <div id="printableInvoiceWrapper" class="bg-white text-slate-900 p-8 sm:p-12 rounded-3xl shadow-2xl border border-slate-200 space-y-8 font-sans">
-        
+      <div id="printableInvoiceWrapper"
+        class="bg-white text-slate-900 p-8 sm:p-12 rounded-3xl shadow-2xl border border-slate-200 space-y-8 font-sans">
+
         <div class="flex flex-col sm:flex-row justify-between items-start gap-6 border-b-2 border-slate-900 pb-6">
           <div>
             <div class="flex items-center gap-2">
-              <span class="font-display font-black text-2xl tracking-tight text-slate-900">ENTERPRISES ERP SOLUTIONS</span>
-              <span class="text-[10px] font-mono font-bold tracking-widest px-2 py-0.5 rounded bg-slate-900 text-white">EQUITY CONSORTIUM</span>
+              <span class="font-display font-black text-2xl tracking-tight text-slate-900">ENTERPRISES ERP
+                SOLUTIONS</span>
+              <span
+                class="text-[10px] font-mono font-bold tracking-widest px-2 py-0.5 rounded bg-slate-900 text-white">EQUITY
+                CONSORTIUM</span>
             </div>
-            <p class="text-xs text-slate-700 mt-1 font-semibold">Overseas Apparel Machinery Import & Logistics Consortium</p>
-            <p class="text-xs text-slate-500 font-mono mt-0.5">Commercial Logistics Hub: Colombo Port / Biyagama EPZ Corridor</p>
-            <p class="text-xs text-slate-500 font-mono">VAT/SVAT: LK-99283741-001 • TIN: 102938475 • Hotline: +94 11 289 4400</p>
+            <p class="text-xs text-slate-700 mt-1 font-semibold">Overseas Apparel Machinery Import & Logistics
+              Consortium</p>
+            <p class="text-xs text-slate-500 font-mono mt-0.5">Commercial Logistics Hub: Colombo Port / Biyagama EPZ
+              Corridor</p>
+            <p class="text-xs text-slate-500 font-mono">VAT/SVAT: LK-99283741-001 • TIN: 102938475 • Hotline: +94 11 289
+              4400</p>
           </div>
 
           <div class="text-left sm:text-right font-mono">
             <div class="text-2xl font-black text-sky-800 tracking-tight" id="invDocNumber">INV-1001</div>
-            <div class="text-xs text-slate-600 mt-1">Date: <strong id="invDocDate" class="text-slate-900">2026-09-25</strong></div>
-            <div class="text-xs text-slate-600">Payment: <strong id="invDocPayment" class="text-slate-900">Bank Wire</strong></div>
-            <div class="mt-2 text-[11px] inline-block px-3 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
+            <div class="text-xs text-slate-600 mt-1">Date: <strong id="invDocDate"
+                class="text-slate-900">2026-09-25</strong></div>
+            <div class="text-xs text-slate-600">Payment: <strong id="invDocPayment" class="text-slate-900">Bank
+                Wire</strong></div>
+            <div
+              class="mt-2 text-[11px] inline-block px-3 py-0.5 rounded-full font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">
               COMMERCIAL TAX INVOICE
             </div>
           </div>
@@ -1027,14 +1196,16 @@
 
         <div class="grid grid-cols-2 gap-6 text-xs">
           <div class="space-y-1">
-            <span class="text-slate-400 font-bold uppercase tracking-wider font-mono text-[10px]">Client / Consignee:</span>
+            <span class="text-slate-400 font-bold uppercase tracking-wider font-mono text-[10px]">Client /
+              Consignee:</span>
             <div class="font-bold text-slate-900 text-sm" id="invDocCustomer">MAS Active Leisureline</div>
             <div class="text-slate-600" id="invDocPhone">Contact: 077-xxxxxxx</div>
             <div class="text-slate-600" id="invDocRegion">Western Province, Sri Lanka</div>
           </div>
 
           <div class="space-y-1 text-right">
-            <span class="text-slate-400 font-bold uppercase tracking-wider font-mono text-[10px]">Asset & Warranty Documentation:</span>
+            <span class="text-slate-400 font-bold uppercase tracking-wider font-mono text-[10px]">Asset & Warranty
+              Documentation:</span>
             <div class="font-bold text-slate-800" id="invDocWarranty">Warranty: 1-Year Comprehensive</div>
             <div class="text-slate-600 font-mono" id="invDocSerials">Serials: SN-Pending</div>
           </div>
@@ -1101,20 +1272,24 @@
   </div>
 
   <!-- MODAL 4: PARTNER CAPITAL ADVANCE / DRAW MODAL -->
-  <div id="disbursementModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="glass-card bg-carbon-900 max-w-md w-full rounded-3xl border border-carbon-700 p-6 space-y-6 shadow-2xl relative">
+  <div id="disbursementModal"
+    class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div
+      class="glass-card bg-carbon-900 max-w-md w-full rounded-3xl border border-carbon-700 p-6 space-y-6 shadow-2xl relative">
       <div class="flex justify-between items-center border-b border-carbon-700/80 pb-3">
         <h3 class="font-display font-bold text-white text-base flex items-center gap-2">
           <i class="fa-solid fa-hand-holding-dollar text-emerald-400"></i>
           <span>Record Partner Capital Draw</span>
         </h3>
-        <button onclick="closeModal('disbursementModal')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="closeModal('disbursementModal')" class="text-slate-400 hover:text-white"><i
+            class="fa-solid fa-xmark"></i></button>
       </div>
 
       <form onsubmit="submitDisbursement(event)" class="space-y-4 text-xs font-mono">
         <div>
           <label class="block text-slate-400 mb-1">Beneficiary Partner</label>
-          <select id="disbursePartner" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-3 py-2 text-white">
+          <select id="disbursePartner"
+            class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-3 py-2 text-white">
             <option value="X">ENTERPRISES ERP SOLUTIONS</option>
             <option value="Y">Global Enterprises</option>
           </select>
@@ -1122,20 +1297,24 @@
 
         <div>
           <label class="block text-slate-400 mb-1">Draw Amount (LKR)</label>
-          <input type="number" id="disburseAmount" min="1" step="any" required class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-3 py-2 text-emerald-400 font-bold">
+          <input type="number" id="disburseAmount" min="1" step="any" required
+            class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-3 py-2 text-emerald-400 font-bold">
         </div>
 
         <div>
           <label class="block text-slate-400 mb-1">Transfer Date</label>
-          <input type="date" id="disburseDate" required class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-3 py-2 text-white">
+          <input type="date" id="disburseDate" required
+            class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-3 py-2 text-white">
         </div>
 
         <div>
           <label class="block text-slate-400 mb-1">Payment Reference / Bank Memo</label>
-          <input type="text" id="disburseMemo" placeholder="Cheque # / Direct SLIPS Reference" class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-3 py-2 text-white font-sans">
+          <input type="text" id="disburseMemo" placeholder="Cheque # / Direct SLIPS Reference"
+            class="w-full bg-carbon-950 border border-carbon-700 rounded-xl px-3 py-2 text-white font-sans">
         </div>
 
-        <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 font-bold uppercase tracking-wider text-white rounded-xl transition">
+        <button type="submit"
+          class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 font-bold uppercase tracking-wider text-white rounded-xl transition">
           Record Capital Draw
         </button>
       </form>
@@ -1404,9 +1583,8 @@
     function showToast(message, type = 'success') {
       const container = document.getElementById('toastContainer');
       const toast = document.createElement('div');
-      toast.className = `p-4 rounded-2xl text-xs font-semibold flex items-center gap-3 shadow-2xl transition-all duration-300 pointer-events-auto border ${
-        type === 'success' ? 'bg-emerald-950/95 text-emerald-200 border-emerald-700/80' : 'bg-rose-950/95 text-rose-200 border-rose-700/80'
-      }`;
+      toast.className = `p-4 rounded-2xl text-xs font-semibold flex items-center gap-3 shadow-2xl transition-all duration-300 pointer-events-auto border ${type === 'success' ? 'bg-emerald-950/95 text-emerald-200 border-emerald-700/80' : 'bg-rose-950/95 text-rose-200 border-rose-700/80'
+        }`;
       toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-circle-exclamation text-rose-400'} text-base"></i><span>${message}</span>`;
       container.appendChild(toast);
       setTimeout(() => {
@@ -1487,7 +1665,7 @@
 
     function computeSaleMetrics(s) {
       const machine = machines.find(m => m.id === s.machineId) || {};
-      
+
       // Use frozen historical cost if present to avoid skewing financials during USD fluctuations
       let unitCost = s.frozenUnitCost;
       if (unitCost === undefined || unitCost === null) {
@@ -1672,11 +1850,10 @@
           <td class="px-3.5 py-3 text-center font-bold text-slate-200">${c.qty}</td>
           <td class="px-3.5 py-3 text-right font-bold text-slate-100">${formatLKR(c.totalRevenue)}</td>
           <td class="px-3.5 py-3 text-center">
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${
-              s.paymentStatus === 'PAID' ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' :
-              s.paymentStatus === 'PARTIAL' ? 'bg-amber-950 text-amber-400 border border-amber-800' :
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${s.paymentStatus === 'PAID' ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' :
+            s.paymentStatus === 'PARTIAL' ? 'bg-amber-950 text-amber-400 border border-amber-800' :
               'bg-rose-950 text-rose-400 border border-rose-800'
-            }">${s.paymentStatus || 'PAID'}</span>
+          }">${s.paymentStatus || 'PAID'}</span>
           </td>
           <td class="px-3.5 py-3 text-center">
             <div class="flex items-center justify-center gap-1.5">
@@ -1705,7 +1882,7 @@
         totalUnits += (parseInt(m.initialStock) || 0);
       });
 
-      const brands = Object.keys(brandMap).sort((a,b) => brandMap[b] - brandMap[a]);
+      const brands = Object.keys(brandMap).sort((a, b) => brandMap[b] - brandMap[a]);
       brands.forEach(b => {
         const count = brandMap[b];
         const pct = totalUnits > 0 ? Math.round((count / totalUnits) * 100) : 0;
@@ -1808,8 +1985,8 @@
 
       const filtered = machines.filter(m => {
         const matchesQ = m.id.toLowerCase().includes(q) ||
-                         (m.brand && m.brand.toLowerCase().includes(q)) ||
-                         (m.model && m.model.toLowerCase().includes(q));
+          (m.brand && m.brand.toLowerCase().includes(q)) ||
+          (m.model && m.model.toLowerCase().includes(q));
         const matchesB = (b === 'ALL') || ((m.brand || '').toUpperCase() === b);
         return matchesQ && matchesB;
       });
@@ -1851,11 +2028,10 @@
           <td class="px-4 py-3.5 text-right text-amber-400">${formatLKR(c.totalCost)}</td>
           <td class="px-4 py-3.5 text-right font-bold text-emerald-400">${formatLKR(c.netProfit)}</td>
           <td class="px-4 py-3.5 text-center">
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${
-              s.paymentStatus === 'PAID' ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' :
-              s.paymentStatus === 'PARTIAL' ? 'bg-amber-950 text-amber-400 border border-amber-800' :
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${s.paymentStatus === 'PAID' ? 'bg-emerald-950 text-emerald-400 border border-emerald-800' :
+            s.paymentStatus === 'PARTIAL' ? 'bg-amber-950 text-amber-400 border border-amber-800' :
               'bg-rose-950 text-rose-400 border border-rose-800'
-            }">${s.paymentStatus || 'PAID'}</span>
+          }">${s.paymentStatus || 'PAID'}</span>
           </td>
           <td class="px-4 py-3.5 text-center">
             <div class="flex items-center justify-center gap-1.5">
@@ -1882,10 +2058,10 @@
       const filtered = sales.filter(s => {
         const m = machines.find(x => x.id === s.machineId) || {};
         return s.id.toLowerCase().includes(q) ||
-               (s.customer && s.customer.toLowerCase().includes(q)) ||
-               (s.serialNumbers && s.serialNumbers.toLowerCase().includes(q)) ||
-               (m.model && m.model.toLowerCase().includes(q)) ||
-               (m.brand && m.brand.toLowerCase().includes(q));
+          (s.customer && s.customer.toLowerCase().includes(q)) ||
+          (s.serialNumbers && s.serialNumbers.toLowerCase().includes(q)) ||
+          (m.model && m.model.toLowerCase().includes(q)) ||
+          (m.brand && m.brand.toLowerCase().includes(q));
       });
       renderSalesLedger(filtered);
     }
@@ -1921,7 +2097,7 @@
         }
       });
 
-      const clients = Object.values(custMap).sort((a,b) => b.totalSpend - a.totalSpend);
+      const clients = Object.values(custMap).sort((a, b) => b.totalSpend - a.totalSpend);
 
       if (clients.length === 0) {
         container.innerHTML = `<div class="col-span-full text-center py-12 glass-card rounded-3xl border border-carbon-700/60 p-8 font-mono text-slate-400">Customer directory empty. New clients record automatically upon commercial dispatch.</div>`;
@@ -2303,7 +2479,7 @@
 
       document.getElementById('machineFormMode').value = "EDIT";
       document.getElementById('machineModalTitle').textContent = "Edit SKU Specs: " + m.id;
-      
+
       document.getElementById('mfSku').value = m.id;
       document.getElementById('mfSku').disabled = true;
       document.getElementById('mfBrand').value = m.brand;
@@ -2413,6 +2589,7 @@
       if (currentUser && currentUser.role === 'PARTNER') return;
       const payload = {
         app: "ANUJAYA_GLOBAL_ERP",
+        app: "ENTERPRISE_GLOBAL_ERP",
         version: "7.0-ENTERPRISE",
         timestamp: new Date().toISOString(),
         globalUsdRate,
@@ -2434,7 +2611,7 @@
       if (!file) return;
 
       const reader = new FileReader();
-      reader.onload = function(evt) {
+      reader.onload = function (evt) {
         try {
           const data = JSON.parse(evt.target.result);
           if (data.machines) {
@@ -2525,4 +2702,5 @@
     });
   </script>
 </body>
+
 </html>

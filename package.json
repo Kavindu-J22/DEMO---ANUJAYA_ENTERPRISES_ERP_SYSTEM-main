@@ -1,11 +1,12 @@
 {
-  "name": "anujaya_enterprises_erp_system",
+  "name": "enterprise_erp_system",
   "version": "1.0.0",
-  "description": "",
+  "description": "Industrial Machinery Enterprise Consortium ERP Demo",
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
     "server": "node server/server.js",
+    "seed": "node server/seed-demo-db.js",
     "dev:client": "cd client && npm run dev",
     "build": "cd client && npm run build"
   },

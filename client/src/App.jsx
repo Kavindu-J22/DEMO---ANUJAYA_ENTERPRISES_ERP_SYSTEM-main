@@ -128,7 +128,7 @@ export default function App() {
       addressEn: "200/2B/1, Pahala Kosgama, Kosgama, Sri Lanka",
       addressSi: "200/2බී/1, පහළ කොස්ගම, කොස්ගම, ශ්‍රී ලංකාව",
       hotline: "077 412 7702",
-      email: "anujayaenterprises.info@gmail.com"
+      email: "info@enterprises-erp.com"
     },
     bankInfo: {
       bankNameEn: "Bank Of Ceylon",
@@ -1351,7 +1351,7 @@ export default function App() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `ANUJAYA_CONSORTIUM_FULL_AUDIT_${new Date().toISOString().slice(0, 10)}.json`;
+        a.download = `ENTERPRISE_ERP_FULL_AUDIT_${new Date().toISOString().slice(0, 10)}.json`;
         a.click();
         URL.revokeObjectURL(url);
         addToast("Master system audit export package downloaded!", "success");
